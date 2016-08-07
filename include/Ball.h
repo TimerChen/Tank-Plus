@@ -12,12 +12,12 @@ public:
 	Color Color_Edge,Color_Inside;
 	short Default_EdgeColor,Default_InsideColor;
 
-	Ball( Polygon SHAPE = Polygon(), double M = 1, Point V = 0, double MAXV = 8 );
-	//shape
-	Polygon shape;
+	Ball( double M = 1, Point V = 0, double MAXV = 8 );
+
 	//state
-	Point v;
+	Point v,cent,pos;
 	double m,MAXv;
+	//void InitCenter ( Point add=Point() );
 	void Addv( const Point &V);
 };
 

@@ -1,11 +1,12 @@
 #include "Ball.h"
 #include "Geo_Calc.h"
 
-Ball::Ball( Polygon SHAPE, double M, Point V,double MAXV ):
-shape(SHAPE), m(M), v(V), MAXv(MAXV)
-{
+
+Ball::Ball( double M, Point V, double MAXV ):
+m(M), v(V), MAXv(MAXV)
 	Default_EdgeColor = Default_InsideColor = 1;
 }
+
 
 void Ball::Addv( const Point &V)
 {
