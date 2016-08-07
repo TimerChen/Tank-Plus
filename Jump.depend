@@ -1,0 +1,458 @@
+# depslib dependency file v1.0
+1428026370 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/DrawTool.cpp
+	"DrawTool.h"
+	"GL/glut.h"
+
+1428025594 /home/timemachine/Documents/Tuifei/OpenGL/Jump/DrawTool.h
+	"Fathers.h"
+	"Color.h"
+
+1428223715 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Fathers.h
+	<vector>
+	<string>
+	<cmath>
+	<queue>
+	<cstdio>
+	<tuple>
+	"GL/glut.h"
+
+1427788461 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Color.h
+	"Fathers.h"
+
+1427782087 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/Fathers.h
+	<vector>
+	<string>
+	<cmath>
+	"GL/glut.h"
+
+1428069447 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/Geo_Calc.cpp
+	"Geo_Calc.h"
+
+1428019742 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Geo_Clac.h
+	"Point.h"
+	"Circle.h"
+	"Polygon.h"
+	"Rect.h"
+	"Line.h"
+
+1427794698 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Point.h
+	"Geometry.h"
+
+1428020098 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Geometry.h
+	"Fathers.h"
+
+1427796478 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Circle.h
+	"Geometry.h"
+	"Point.h"
+	"DrawTool.h"
+	"Polygon.h"
+
+1428020265 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Polygon.h
+	<vector>
+	"Geometry.h"
+	"Point.h"
+
+1428224347 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/main.cpp
+	"GL/glut.h"
+	"Sprite_Circle.h"
+	"Sprite_Polygon.h"
+	"Geo_Calc.h"
+	"Rect.h"
+	"DrawTool.h"
+	"Sprite_SandBox.h"
+	<cstdio>
+	<ctime>
+
+1428020097 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/Sprite_Circle.cpp
+	"Sprite_Circle.h"
+	"Geo_Calc.h"
+	<cstdio>
+
+1427794333 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Sprite_Circle.h
+	"Sprite_Base.h"
+	"Circle.h"
+	"Color.h"
+
+1427787062 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Sprite_Base.h
+	"Fathers.h"
+	"DrawTool.h"
+
+1427795869 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/Sprite_Polygon.cpp
+	"Sprite_Polygon.h"
+
+1427788761 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Sprite_Polygon.h
+	"Sprite_Base.h"
+	"Polygon.h"
+
+1428223630 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/Fathers.cpp
+	"Fathers.h"
+
+1427787163 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/Point.cpp
+	"Point.h"
+
+1427787744 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/Color.cpp
+	"Color.h"
+
+1427796469 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Rect.h
+	"Fathers.h"
+	"Polygon.h"
+
+1427981481 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/Rect.cpp
+	"Rect.h"
+
+1428020095 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/Circle.cpp
+	"Circle.h"
+	"Geo_Calc.h"
+
+1427979639 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Line.h
+	"Geometry.h"
+	"Point.h"
+
+1427979530 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/Line.cpp
+	"Line.h"
+
+1428020396 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/Polygon.cpp
+	"Polygon.h"
+
+1428027611 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Geo_Calc.h
+	"Point.h"
+	"Circle.h"
+	"Polygon.h"
+	"Rect.h"
+	"Line.h"
+
+1428167101 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/Ball.cpp
+	"Ball.h"
+	"Geo_Calc.h"
+
+1428167168 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Ball.h
+	"Body.h"
+	"Polygon.h"
+	"Color.h"
+
+1428022616 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Body.h
+	"Fathers.h"
+
+1428155836 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/Wall.cpp
+	"Wall.h"
+
+1428155804 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Wall.h
+	"Body.h"
+	"Polygon.h"
+	"Color.h"
+
+1428223803 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/SandBox.cpp
+	"SandBox.h"
+	"Geo_Calc.h"
+
+1428223815 /home/timemachine/Documents/Tuifei/OpenGL/Jump/SandBox.h
+	"Fathers.h"
+	"Point.h"
+	"Ball.h"
+	"Wall.h"
+
+1428167138 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/Sprite_SandBox.cpp
+	"Sprite_SandBox.h"
+	"Sprite_Polygon.h"
+	"Ball.h"
+
+1428032824 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Sprite_SandBox.h
+	"Sprite_Base.h"
+	"SandBox.h"
+
+1428167100 source:h:\jump\ball.cpp
+	"Ball.h"
+	"Geo_Calc.h"
+
+1428167168 h:\jump\ball.h
+	"Body.h"
+	"Polygon.h"
+	"Color.h"
+
+1428022616 h:\jump\body.h
+	"Fathers.h"
+
+1428223714 h:\jump\fathers.h
+	<vector>
+	<string>
+	<cmath>
+	<queue>
+	<cstdio>
+	<tuple>
+	"GL/glut.h"
+
+1428020264 h:\jump\polygon.h
+	<vector>
+	"Geometry.h"
+	"Point.h"
+
+1428020098 h:\jump\geometry.h
+	"Fathers.h"
+
+1427794698 h:\jump\point.h
+	"Geometry.h"
+
+1427788460 h:\jump\color.h
+	"Fathers.h"
+
+1428027610 h:\jump\geo_calc.h
+	"Point.h"
+	"Circle.h"
+	"Polygon.h"
+	"Rect.h"
+	"Line.h"
+
+1427796478 h:\jump\circle.h
+	"Geometry.h"
+	"Point.h"
+	"DrawTool.h"
+	"Polygon.h"
+
+1428025594 h:\jump\drawtool.h
+	"Fathers.h"
+	"Color.h"
+
+1427796468 h:\jump\rect.h
+	"Fathers.h"
+	"Polygon.h"
+
+1427979638 h:\jump\line.h
+	"Geometry.h"
+	"Point.h"
+
+1428020094 source:h:\jump\circle.cpp
+	"Circle.h"
+	"Geo_Calc.h"
+
+1427787744 source:h:\jump\color.cpp
+	"Color.h"
+
+1428026370 source:h:\jump\drawtool.cpp
+	"DrawTool.h"
+	"GL/glut.h"
+
+1428223630 source:h:\jump\fathers.cpp
+	"Fathers.h"
+
+1428069446 source:h:\jump\geo_calc.cpp
+	"Geo_Calc.h"
+
+1427979530 source:h:\jump\line.cpp
+	"Line.h"
+
+1428224734 source:h:\jump\main.cpp
+	"GL/glut.h"
+	"Sprite_Circle.h"
+	"Sprite_Polygon.h"
+	"Geo_Calc.h"
+	"Rect.h"
+	"DrawTool.h"
+	"Sprite_SandBox.h"
+	<cstdio>
+	<ctime>
+
+1427794332 h:\jump\sprite_circle.h
+	"Sprite_Base.h"
+	"Circle.h"
+	"Color.h"
+
+1427787062 h:\jump\sprite_base.h
+	"Fathers.h"
+	"DrawTool.h"
+
+1427788760 h:\jump\sprite_polygon.h
+	"Sprite_Base.h"
+	"Polygon.h"
+
+1428032824 h:\jump\sprite_sandbox.h
+	"Sprite_Base.h"
+	"SandBox.h"
+
+1428223814 h:\jump\sandbox.h
+	"Fathers.h"
+	"Point.h"
+	"Ball.h"
+	"Wall.h"
+
+1428155804 h:\jump\wall.h
+	"Body.h"
+	"Polygon.h"
+	"Color.h"
+
+1427787162 source:h:\jump\point.cpp
+	"Point.h"
+
+1428020396 source:h:\jump\polygon.cpp
+	"Polygon.h"
+
+1427981480 source:h:\jump\rect.cpp
+	"Rect.h"
+
+1428223802 source:h:\jump\sandbox.cpp
+	"SandBox.h"
+	"Geo_Calc.h"
+
+1428020096 source:h:\jump\sprite_circle.cpp
+	"Sprite_Circle.h"
+	"Geo_Calc.h"
+	<cstdio>
+
+1427795868 source:h:\jump\sprite_polygon.cpp
+	"Sprite_Polygon.h"
+
+1428167138 source:h:\jump\sprite_sandbox.cpp
+	"Sprite_SandBox.h"
+	"Sprite_Polygon.h"
+	"Ball.h"
+
+1428155836 source:h:\jump\wall.cpp
+	"Wall.h"
+
+1433293349 source:c:\documents and settings\gb\桌面\haha\jump\ball.cpp
+	"Ball.h"
+	"Geo_Calc.h"
+
+1428167168 c:\documents and settings\gb\桌面\haha\jump\ball.h
+	"Body.h"
+	"Polygon.h"
+	"Color.h"
+
+1428022616 c:\documents and settings\gb\桌面\haha\jump\body.h
+	"Fathers.h"
+
+1428226352 c:\documents and settings\gb\桌面\haha\jump\fathers.h
+	<vector>
+	<string>
+	<cmath>
+	<queue>
+	<cstdio>
+	<tuple>
+	"GL/glut.h"
+
+1428020264 c:\documents and settings\gb\桌面\haha\jump\polygon.h
+	<vector>
+	"Geometry.h"
+	"Point.h"
+
+1428020098 c:\documents and settings\gb\桌面\haha\jump\geometry.h
+	"Fathers.h"
+
+1427794698 c:\documents and settings\gb\桌面\haha\jump\point.h
+	"Geometry.h"
+
+1427788460 c:\documents and settings\gb\桌面\haha\jump\color.h
+	"Fathers.h"
+
+1428027610 c:\documents and settings\gb\桌面\haha\jump\geo_calc.h
+	"Point.h"
+	"Circle.h"
+	"Polygon.h"
+	"Rect.h"
+	"Line.h"
+
+1427796478 c:\documents and settings\gb\桌面\haha\jump\circle.h
+	"Geometry.h"
+	"Point.h"
+	"DrawTool.h"
+	"Polygon.h"
+
+1428025594 c:\documents and settings\gb\桌面\haha\jump\drawtool.h
+	"Fathers.h"
+	"Color.h"
+
+1427796468 c:\documents and settings\gb\桌面\haha\jump\rect.h
+	"Fathers.h"
+	"Polygon.h"
+
+1427979638 c:\documents and settings\gb\桌面\haha\jump\line.h
+	"Geometry.h"
+	"Point.h"
+
+1428020094 source:c:\documents and settings\gb\桌面\haha\jump\circle.cpp
+	"Circle.h"
+	"Geo_Calc.h"
+
+1427787744 source:c:\documents and settings\gb\桌面\haha\jump\color.cpp
+	"Color.h"
+
+1428026370 source:c:\documents and settings\gb\桌面\haha\jump\drawtool.cpp
+	"DrawTool.h"
+	"GL/glut.h"
+
+1428223630 source:c:\documents and settings\gb\桌面\haha\jump\fathers.cpp
+	"Fathers.h"
+
+1428069446 source:c:\documents and settings\gb\桌面\haha\jump\geo_calc.cpp
+	"Geo_Calc.h"
+
+1427979530 source:c:\documents and settings\gb\桌面\haha\jump\line.cpp
+	"Line.h"
+
+1428284826 source:c:\documents and settings\gb\桌面\haha\jump\main.cpp
+	"GL/glut.h"
+	"Sprite_Circle.h"
+	"Sprite_Polygon.h"
+	"Geo_Calc.h"
+	"Rect.h"
+	"DrawTool.h"
+	"Sprite_SandBox.h"
+	<cstdio>
+	<ctime>
+
+1427794332 c:\documents and settings\gb\桌面\haha\jump\sprite_circle.h
+	"Sprite_Base.h"
+	"Circle.h"
+	"Color.h"
+
+1427787062 c:\documents and settings\gb\桌面\haha\jump\sprite_base.h
+	"Fathers.h"
+	"DrawTool.h"
+
+1427788760 c:\documents and settings\gb\桌面\haha\jump\sprite_polygon.h
+	"Sprite_Base.h"
+	"Polygon.h"
+
+1428032824 c:\documents and settings\gb\桌面\haha\jump\sprite_sandbox.h
+	"Sprite_Base.h"
+	"SandBox.h"
+
+1428223814 c:\documents and settings\gb\桌面\haha\jump\sandbox.h
+	"Fathers.h"
+	"Point.h"
+	"Ball.h"
+	"Wall.h"
+
+1428155804 c:\documents and settings\gb\桌面\haha\jump\wall.h
+	"Body.h"
+	"Polygon.h"
+	"Color.h"
+
+1427787162 source:c:\documents and settings\gb\桌面\haha\jump\point.cpp
+	"Point.h"
+
+1428020396 source:c:\documents and settings\gb\桌面\haha\jump\polygon.cpp
+	"Polygon.h"
+
+1427981480 source:c:\documents and settings\gb\桌面\haha\jump\rect.cpp
+	"Rect.h"
+
+1428223802 source:c:\documents and settings\gb\桌面\haha\jump\sandbox.cpp
+	"SandBox.h"
+	"Geo_Calc.h"
+
+1428020096 source:c:\documents and settings\gb\桌面\haha\jump\sprite_circle.cpp
+	"Sprite_Circle.h"
+	"Geo_Calc.h"
+	<cstdio>
+
+1427795868 source:c:\documents and settings\gb\桌面\haha\jump\sprite_polygon.cpp
+	"Sprite_Polygon.h"
+
+1428167138 source:c:\documents and settings\gb\桌面\haha\jump\sprite_sandbox.cpp
+	"Sprite_SandBox.h"
+	"Sprite_Polygon.h"
+	"Ball.h"
+
+1428155836 source:c:\documents and settings\gb\桌面\haha\jump\wall.cpp
+	"Wall.h"
+

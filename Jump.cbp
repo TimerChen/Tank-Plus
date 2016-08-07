@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Jump" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Option virtualFolders="Sprite\;Main\;Draw\;Geometry\;HH\;SandBox\;" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Jump" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c++11" />
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Jump" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++11" />
+			<Add option="-Wall" />
+		</Compiler>
+		<Linker>
+			<Add library="glu32" />
+			<Add library="glut32" />
+			<Add library="opengl32" />
+		</Linker>
+		<Unit filename="Ball.cpp">
+			<Option virtualFolder="SandBox/" />
+		</Unit>
+		<Unit filename="Ball.h">
+			<Option virtualFolder="SandBox/" />
+		</Unit>
+		<Unit filename="Body.h">
+			<Option virtualFolder="SandBox/" />
+		</Unit>
+		<Unit filename="Circle.cpp">
+			<Option virtualFolder="Geometry/" />
+		</Unit>
+		<Unit filename="Circle.h">
+			<Option virtualFolder="Geometry/" />
+		</Unit>
+		<Unit filename="Color.cpp">
+			<Option virtualFolder="Draw/" />
+		</Unit>
+		<Unit filename="Color.h">
+			<Option virtualFolder="Draw/" />
+		</Unit>
+		<Unit filename="DrawTool.cpp">
+			<Option virtualFolder="Draw/" />
+		</Unit>
+		<Unit filename="DrawTool.h">
+			<Option virtualFolder="Draw/" />
+		</Unit>
+		<Unit filename="Fathers.cpp">
+			<Option virtualFolder="HH/" />
+		</Unit>
+		<Unit filename="Fathers.h">
+			<Option virtualFolder="HH/" />
+		</Unit>
+		<Unit filename="Geo_Calc.cpp">
+			<Option virtualFolder="Geometry/" />
+		</Unit>
+		<Unit filename="Geo_Calc.h">
+			<Option virtualFolder="Geometry/" />
+		</Unit>
+		<Unit filename="Geometry.h">
+			<Option virtualFolder="Geometry/" />
+		</Unit>
+		<Unit filename="Line.cpp">
+			<Option virtualFolder="Geometry/" />
+		</Unit>
+		<Unit filename="Line.h">
+			<Option virtualFolder="Geometry/" />
+		</Unit>
+		<Unit filename="Point.cpp">
+			<Option virtualFolder="Geometry/" />
+		</Unit>
+		<Unit filename="Point.h">
+			<Option virtualFolder="Geometry/" />
+		</Unit>
+		<Unit filename="Polygon.cpp">
+			<Option virtualFolder="Geometry/" />
+		</Unit>
+		<Unit filename="Polygon.h">
+			<Option virtualFolder="Geometry/" />
+		</Unit>
+		<Unit filename="Rect.cpp">
+			<Option virtualFolder="HH/" />
+		</Unit>
+		<Unit filename="Rect.h">
+			<Option virtualFolder="HH/" />
+		</Unit>
+		<Unit filename="SandBox.cpp">
+			<Option virtualFolder="SandBox/" />
+		</Unit>
+		<Unit filename="SandBox.h">
+			<Option virtualFolder="SandBox/" />
+		</Unit>
+		<Unit filename="Sprite_Base.h">
+			<Option virtualFolder="Sprite/" />
+		</Unit>
+		<Unit filename="Sprite_Circle.cpp">
+			<Option virtualFolder="Sprite/" />
+		</Unit>
+		<Unit filename="Sprite_Circle.h">
+			<Option virtualFolder="Sprite/" />
+		</Unit>
+		<Unit filename="Sprite_Polygon.cpp">
+			<Option virtualFolder="Sprite/" />
+		</Unit>
+		<Unit filename="Sprite_Polygon.h">
+			<Option virtualFolder="Sprite/" />
+		</Unit>
+		<Unit filename="Sprite_SandBox.cpp">
+			<Option virtualFolder="Sprite/" />
+		</Unit>
+		<Unit filename="Sprite_SandBox.h">
+			<Option virtualFolder="Sprite/" />
+		</Unit>
+		<Unit filename="Wall.cpp">
+			<Option virtualFolder="SandBox/" />
+		</Unit>
+		<Unit filename="Wall.h">
+			<Option virtualFolder="SandBox/" />
+		</Unit>
+		<Unit filename="main.cpp">
+			<Option virtualFolder="Main/" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
