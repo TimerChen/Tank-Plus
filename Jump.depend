@@ -456,3 +456,138 @@
 1428155836 source:c:\documents and settings\gb\×ÀÃæ\haha\jump\wall.cpp
 	"Wall.h"
 
+1470744263 source:d:\projects\tankplus\src\ball.cpp
+	"Ball.h"
+	"Geo_Calc.h"
+
+1470734327 d:\projects\tankplus\include\ball.h
+	"Body.h"
+	"Polygon.h"
+	"Color.h"
+
+1428022616 d:\projects\tankplus\include\body.h
+	"Fathers.h"
+
+1428226352 d:\projects\tankplus\include\fathers.h
+	<vector>
+	<string>
+	<cmath>
+	<queue>
+	<cstdio>
+	<tuple>
+	"GL/glut.h"
+
+1470742670 d:\projects\tankplus\include\polygon.h
+	<vector>
+	"Geometry.h"
+	"Point.h"
+
+1428020098 d:\projects\tankplus\include\geometry.h
+	"Fathers.h"
+
+1427794698 d:\projects\tankplus\include\point.h
+	"Geometry.h"
+
+1427788460 d:\projects\tankplus\include\color.h
+	"Fathers.h"
+
+1470734250 d:\projects\tankplus\include\geo_calc.h
+	"Point.h"
+	"Circle.h"
+	"Polygon.h"
+	"Rect.h"
+	"Line.h"
+
+1427796478 d:\projects\tankplus\include\circle.h
+	"Geometry.h"
+	"Point.h"
+	"DrawTool.h"
+	"Polygon.h"
+
+1428025594 d:\projects\tankplus\include\drawtool.h
+	"Fathers.h"
+	"Color.h"
+
+1427796468 d:\projects\tankplus\include\rect.h
+	"Fathers.h"
+	"Polygon.h"
+
+1427979638 d:\projects\tankplus\include\line.h
+	"Geometry.h"
+	"Point.h"
+
+1428020094 source:d:\projects\tankplus\src\circle.cpp
+	"Circle.h"
+	"Geo_Calc.h"
+
+1427787744 source:d:\projects\tankplus\src\color.cpp
+	"Color.h"
+
+1428026370 source:d:\projects\tankplus\src\drawtool.cpp
+	"DrawTool.h"
+	"GL/glut.h"
+
+1428223630 source:d:\projects\tankplus\src\fathers.cpp
+	"Fathers.h"
+
+1428069446 source:d:\projects\tankplus\src\geo_calc.cpp
+	"Geo_Calc.h"
+
+1427979530 source:d:\projects\tankplus\src\line.cpp
+	"Line.h"
+
+1470744325 source:d:\projects\tankplus\src\main.cpp
+	"GL/glut.h"
+	"Sprite_Circle.h"
+	"Sprite_Polygon.h"
+	"Geo_Calc.h"
+	"Rect.h"
+	"DrawTool.h"
+	"Sprite_SandBox.h"
+	<cstdio>
+	<ctime>
+
+1427794332 d:\projects\tankplus\include\sprite_circle.h
+	"Sprite_Base.h"
+	"Circle.h"
+	"Color.h"
+
+1427787062 d:\projects\tankplus\include\sprite_base.h
+	"Fathers.h"
+	"DrawTool.h"
+
+1427788760 d:\projects\tankplus\include\sprite_polygon.h
+	"Sprite_Base.h"
+	"Polygon.h"
+
+1428032824 d:\projects\tankplus\include\sprite_sandbox.h
+	"Sprite_Base.h"
+	"SandBox.h"
+
+1470744677 d:\projects\tankplus\include\sandbox.h
+	"Fathers.h"
+	"Point.h"
+	"Ball.h"
+	"Wall.h"
+
+1428155804 d:\projects\tankplus\include\wall.h
+	"Body.h"
+	"Polygon.h"
+	"Color.h"
+
+1427787162 source:d:\projects\tankplus\src\point.cpp
+	"Point.h"
+
+1470744596 source:d:\projects\tankplus\src\ball_polygon.cpp
+	"Ball_Polygon.h"
+	<Geo_Calc.h>
+
+1470744528 d:\projects\tankplus\include\ball_polygon.h
+	<Ball.h>
+
+1470744661 source:d:\projects\tankplus\src\polygon.cpp
+	"Polygon.h"
+
+1427981480 source:d:\projects\tankplus\src\rect.cpp
+	"Rect.h"
+

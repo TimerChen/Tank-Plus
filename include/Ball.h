@@ -11,14 +11,15 @@ public:
 
 	Color Color_Edge,Color_Inside;
 	short Default_EdgeColor,Default_InsideColor;
+	int id;
 
-	Ball( double M = 1, Point V = 0, double MAXV = 8 );
+	Ball( int ID = 0, double M = 1, Point V = 0, double MAXV = 8 );
 
 	//state
 	Point v,cent,pos;
 	double m,MAXv;
 	//void InitCenter ( Point add=Point() );
-	void Addv( const Point &V);
+	void AddV( const Point &V );
 };
 
 #endif // BALL_H

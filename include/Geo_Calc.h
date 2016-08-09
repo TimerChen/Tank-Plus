@@ -34,6 +34,7 @@ public:
 	static Point GetPoint_LineToLine( const Line &a, const Line &b );
 	//
 	static double Dis_PointToLine( const Point &a, const Line &b, short type = 1 );
+	//static double Dis_PointToPolygon
 	static double Dis_LineToLine ( const Line &a, const Line &b );
     //Kick
     static bool CheckKick_LineToLine( const Line &a, const Line &b);

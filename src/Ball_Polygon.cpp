@@ -1,13 +1,20 @@
 #include "Ball_Polygon.h"
+#include <Geo_Calc.h>
 
-Ball_Polygon::Ball_Polygon( Polygon SHAPE, double M, Point V, double MAXV, double ROTATE_V, double ROTATE_RANGLE, Point CENTER_SHIFT ):
-rotate_v(ROTATE_V), rotate_rangle(ROTATE_RUANGLE)
+Ball_Polygon::Ball_Polygon( int ID, double M, Point V, double MAXV, Polygon SHAPE, double ROTATE_V, double ROTATE_RANGLE, Point CENTER_SHIFT ):
+Ball( ID, M, V, MAXV ), shape(SHAPE), rotate_v( ROTATE_V ), rotate_rangle( ROTATE_RANGLE )
 {
-    Ball( SHAPE, M, V, MAXV );
     InitCenter( CENTER_SHIFT );
 }
 
-void InitCenter( Point shift )
+void Ball_Polygon::AddRotateV( double ROTATE_V )
+{
+
+    rotate_v += ROTATE_V;
+
+}
+
+void Ball_Polygon::InitCenter( Point shift )
 {
     cent = Point();
     for(int i=0; i<=shape.points.size(); i++)

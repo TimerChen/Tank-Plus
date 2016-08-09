@@ -1,3 +1,4 @@
+/*
 #include "GL/glut.h"
 
 #include "Sprite_Circle.h"
@@ -157,7 +158,7 @@ void display()
     O3.Draw();
 	R1.Draw();
 
-	//DrawTool::SetColor(Color(255,255,255,255));*/
+	//DrawTool::SetColor(Color(255,255,255,255));*
 	Point cent = Point(400,150);
 	cent = box.balls[0].shape.points[0];
     //box.AddForce(box.Field_Force*-1,1,1);
@@ -247,3 +248,4 @@ int main(int argc, char *argv[])
     glutMainLoop();
     return 0;
 }
+*/

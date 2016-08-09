@@ -30,6 +30,8 @@ private:
     bool IS_RECT;
 };
 
+Polygon operator + ( const Polygon &a, const Point &b );
+Polygon operator - ( const Polygon &a, const Point &b );
 //const std::string Polygon::CLASS_NAME = "Polygon";
 
 

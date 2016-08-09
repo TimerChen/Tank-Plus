@@ -2,13 +2,14 @@
 #include "Geo_Calc.h"
 
 
-Ball::Ball( double M, Point V, double MAXV ):
-m(M), v(V), MAXv(MAXV)
+Ball::Ball( int ID, double M, Point V, double MAXV ):
+id(ID), m(M), v(V), MAXv(MAXV)
+{
 	Default_EdgeColor = Default_InsideColor = 1;
 }
 
 
-void Ball::Addv( const Point &V)
+void Ball::AddV( const Point &V )
 {
 
     v = v+V;

@@ -37,3 +37,18 @@ void Polygon::MoveTo( Point p )
 
 bool Polygon::is_rect() const
 { return IS_RECT; }
+
+Polygon operator + ( const Polygon &a, const Point &b )
+{
+    Polygon re = a;
+    for(int i=0; i<=re.points.size(); i++)
+        re.points[i] = re.points[i] + b;
+    return re;
+}
+Polygon operator - ( const Polygon &a, const Point &b )
+{
+    Polygon re = a;
+    for(int i=0; i<=re.points.size(); i++)
+        re.points[i] = re.points[i] - b;
+    return re;
+}
