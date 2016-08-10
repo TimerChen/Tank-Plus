@@ -1,7 +1,6 @@
 #include "Ball.h"
-#include "Geo_Calc.h"
-
-
+namespace TankPlus
+{
 Ball::Ball( int ID, double M, Point V, double MAXV ):
 id(ID), m(M), v(V), MAXv(MAXV)
 {
@@ -19,4 +18,5 @@ void Ball::AddV( const Point &V )
     //if(len < GAME::eps)return;
     //v = Geo_Calc::Zero(v)*len;
 
+}
 }

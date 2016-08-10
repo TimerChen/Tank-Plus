@@ -13,18 +13,19 @@
 #include <cstdio>
 #include <tuple>
 
-#include "GL/glut.h"
+#ifndef M_PI
 #define M_PI 3.1415926
-namespace GAME
+#endif
+
+namespace TankPlus
 {
-	extern int TIME_COUNT;
-	extern int SCREEN_WIDTH;
-	extern int SCREEN_HEIGHT;
-	extern int SCREEN_DEEPTH;
-	extern double eps;
-	extern int keyboard[200];
-	extern int DIE;
-};
+extern int TIME_COUNT;
+extern int SCREEN_WIDTH;
+extern int SCREEN_HEIGHT;
+extern int SCREEN_DEEPTH;
+extern double eps;
+extern int keyboard[200];
+extern int DIE;
 class Object
 {
 public:
@@ -39,9 +40,13 @@ public:
     //static const std::string CLASS_NAME;
     int LAST_TIME;
     Entity()
-    { Update_TIME(); }
-	void Update_TIME()
-	{ LAST_TIME = GAME::TIME_COUNT; }
+    {
+        Update_TIME();
+    }
+    void Update_TIME()
+    {
+        LAST_TIME = TIME_COUNT;
+    }
     void Draw();
 };
 
@@ -51,5 +56,6 @@ public:
     //static const std::string CLASS_NAME;
 
 };
+}
 
 #endif

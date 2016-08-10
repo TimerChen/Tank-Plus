@@ -6,7 +6,8 @@
 #define POINT_H
 
 #include "Geometry.h"
-
+namespace TankPlus
+{
 class Point: public Geometry
 {
 
@@ -31,6 +32,6 @@ Point operator * ( const Point &a ,double b );
 
 Point operator / ( const Point &a ,double b );
 
-
+}
 
 #endif // POINT_H

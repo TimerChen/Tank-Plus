@@ -1,12 +1,13 @@
 #ifndef Geo_Calc_H
 #define Geo_Calc_H
 
+#include "Polygon.h"
 #include "Point.h"
 #include "Circle.h"
-#include "Polygon.h"
 #include "Rect.h"
 #include "Line.h"
-
+namespace TankPlus
+{
 class Geo_Calc: public Ghost
 {
 public:
@@ -43,5 +44,5 @@ public:
 };
 
 //const std::string Geo_Calc::CLASS_NAME = "Geo_Calc";
-
+}
 #endif // Geo_Calc_H

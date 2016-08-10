@@ -1,13 +1,13 @@
 /************************
     几何的类
 ************************/
-class Geometry;
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
 
 #include "Fathers.h"
 //#include "Geo_Calc.h"
-
+namespace TankPlus
+{
 class Geometry: public Ghost
 {
 
@@ -21,4 +21,5 @@ public:
 
 };
 //const std::string Geometry::CLASS_NAME = "Geometry";
+}
 #endif // GEOMETRY_H

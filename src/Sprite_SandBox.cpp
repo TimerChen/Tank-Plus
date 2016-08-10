@@ -1,7 +1,8 @@
 #include "Sprite_SandBox.h"
 #include "Sprite_Polygon.h"
 #include "Ball.h"
-
+namespace TankPlus
+{
 Sprite_SandBox::Sprite_SandBox( int X, int Y, int Z, SandBox* AIM, short dis ):
 //Sprite_Base(X, Y, Z),aim(AIM), DISPLAY(dis){  }
 x(X), y(Y), z(Z),aim(AIM), DISPLAY(dis){  }
@@ -37,4 +38,5 @@ void Sprite_SandBox::Draw()
         s_tmp.Draw();
     }
 
+}
 }

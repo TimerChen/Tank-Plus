@@ -2,7 +2,8 @@
 #include "Geo_Calc.h"
 #include <cstdio>
 
-
+namespace TankPlus
+{
 const double Sprite_Circle::MIN_LENGTH = 1;
 const int Sprite_Circle::MAX_POINT= 100;
 
@@ -59,6 +60,6 @@ void Sprite_Circle::Draw()
     glEnd();
 
 
-
+}
 }
 

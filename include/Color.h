@@ -6,7 +6,8 @@
 #define COLOR_H
 
 #include "Fathers.h"
-
+namespace TankPlus
+{
 class Color: public Ghost
 {
 
@@ -39,5 +40,5 @@ public:
 Color operator + ( const Color &a ,const Color &b );
 
 Color operator - ( const Color &a ,const Color &b );
-
+}
 #endif // COLOR_H

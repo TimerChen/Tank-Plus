@@ -5,9 +5,11 @@
 #ifndef SPRITE_BASE_H
 #define SPRITE_BASE_H
 
+#include <GL/gl.h>
 #include "Fathers.h"
 #include "DrawTool.h"
-
+namespace TankPlus
+{
 class Sprite_Base: public Entity
 {
 public:
@@ -24,5 +26,5 @@ public:
 };
 
 //static //const std::string CLASS_NAME = "Sprite_Base";
-
+}
 #endif

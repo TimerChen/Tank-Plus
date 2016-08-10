@@ -3,7 +3,8 @@
 
 #include "Sprite_Base.h"
 #include "SandBox.h"
-
+namespace TankPlus
+{
 class Sprite_SandBox: public Sprite_Base
 {
 public:
@@ -16,5 +17,6 @@ public:
 	void Draw();
 
 };
+}
 
 #endif // SPRITE_SANDBOX_H

@@ -7,7 +7,8 @@
 
 #include "Sprite_Base.h"
 #include "Polygon.h"
-
+namespace TankPlus
+{
 class Sprite_Polygon: public Sprite_Base
 {
 
@@ -27,5 +28,5 @@ public:
     void Draw();
 };
 //const std::string Sprite_Polygon::CLASS_NAME = "Sprite_Polygon";
-
+}
 #endif // SPRITE_POLYGON_H

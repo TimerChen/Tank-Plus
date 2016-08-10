@@ -1,5 +1,6 @@
 #include "Geo_Calc.h"
-
+namespace TankPlus
+{
 Point Geo_Calc::Rotate( const Point &a, double rad )
 { return Point( a.x*cos(rad)-a.y*sin(rad), a.x*sin(rad)+a.y*cos(rad) ); }
 
@@ -75,7 +76,6 @@ Point Geo_Calc::GetPoint_LineToLine( const Line &a, const Line &b)
 
 double Geo_Calc::Dis_PointToLine( const Point &a, const Line &b, short type )
 {
-	using namespace GAME;
     if(!type) return fabs( Cross( b.v, a-b.p ) / Length( b.v ) );
 	Point v1 = b.v, v2 = a - b.p, v3 = a - (b.p+b.v);
 	if( Dot( v1, v2 ) < -eps )return Length(v2);
@@ -99,7 +99,6 @@ double Geo_Calc::Dis_LineToLine ( const Line &a, const Line &b )
 //kick
 bool Geo_Calc::CheckKick_LineToLine( const Line &a, const Line &b )
 {
-	using namespace GAME;
 	double ba = Cross( a.p - b.p, b.v )*Cross( a.p+a.v - b.p, b.v ),
 			bb = Cross( b.p - a.p, a.v )*Cross( b.p+b.v - a.p, a.v );
 
@@ -108,7 +107,6 @@ bool Geo_Calc::CheckKick_LineToLine( const Line &a, const Line &b )
 }
 bool Geo_Calc::CheckKick_PolygonToPolygon( const Polygon &a, const Polygon &b )
 {
-	using namespace GAME;
 	int i, j;
 
 	for( i = 0; i < a.points.size(); i++ )
@@ -120,4 +118,5 @@ bool Geo_Calc::CheckKick_PolygonToPolygon( const Polygon &a, const Polygon &b )
 		}
 	}
 	return 0;
+}
 }

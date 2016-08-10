@@ -1,14 +1,19 @@
 
 #当前版本的问题
 * 缺少main函数
-* cannot find -lglut32
+* cannot find -lglut32 (已使用freeglut解决)
 
 #使用帮助手册
 Edited by TimeMachine at 2016-8-10.
 ##目录
+
+###namespace
+
+	所有成员加入TankPlus命名空间
+
 ###Father
 
-    父类以及namespace GAME
+    父类
 
 ###Geometry
 

@@ -1,7 +1,8 @@
 #include "SandBox.h"
 #include "Geo_Calc.h"
 #include <Ball_Polygon.h>
-
+namespace TankPlus
+{
 //Public Functions
 SandBox::SandBox()
 {
@@ -131,7 +132,7 @@ bool SandBox::isCollision( int a, int b, Polygon pa, Polygon pb, void Deal(SandB
     int i,j;
     for(i=0;i<pa.points.size();i++)
     for(j=0;j<pb.points.size();j++)
-    if(Geo_Calc::Dis_PointToLine(pa.points[i],Line(pb.points[j],pb.points[(j+1)%pb.points.size()])) < GAME::eps)
+    if(Geo_Calc::Dis_PointToLine(pa.points[i],Line(pb.points[j],pb.points[(j+1)%pb.points.size()])) < eps)
     {
         Deal(this, a,b, pb.points[j] - pb.points[(j+1)%pb.points.size()] );
         return 1;
@@ -167,4 +168,5 @@ void SandBox::DealWithCollision( void DealBW(SandBox *box, int a,int b, Point di
         }
         balls[i].real_shape = balls[i].real_shape - balls[i].v*1e-7;
     }
+}
 }
