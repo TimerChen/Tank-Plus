@@ -3,13 +3,13 @@
 
 #include "Fathers.h"
 #include "Point.h"
-#include "Ball.h"
+#include "Ball_Polygon.h"
 #include "Wall.h"
 
 class SandBox: public Ghost
 {
 public:
-	std::vector<Ball>balls;
+	std::vector<Ball_Polygon>balls;
 	std::vector<Wall>walls;
 	std::vector<Point>forces;
 
@@ -29,20 +29,20 @@ public:
     int num_balls,num_walls;
     void Refresh();
     double GetNextTime();
-    bool Run( double t, void DealBW(int a,int b,Point dir), void DealBB(int a,int b,Point dir) );
+    bool Run( double t, void DealBW(SandBox *box,int a,int b,Point dir), void DealBB(SandBox *box,int a,int b,Point dir) );
     void AddForce( Point f, int id, int life = 1 );
 
-    static void DefaultDealBW(int a, int b, Point dir);
-    static void DefaultDealBB(int a, int b, Point dir);
+    static void DefaultDealBW(SandBox *box, int a, int b, Point dir);
+    static void DefaultDealBB(SandBox *box, int a, int b, Point dir);
 
 private:
 
     double left_time;
 
-    std::vector<Ball> GetNextBalls( double t );
-    bool isCollision( int a, int b, Polygon pa, Polygon pb, void Deal(int a,int b,Point dir) );
-    bool CollisionCheck();
-    void DealWithCollision( void DealBW(int a,int b,Point dir), void DealBB(int a,int b,Point dir) );
+    std::vector<Ball_Polygon> GetNextBalls( double t );
+    bool isCollision( int a, int b, Polygon pa, Polygon pb, void Deal(SandBox *box,int a,int b,Point dir) );
+    bool CollisionCheck( std::vector<Ball_Polygon> *b );
+    void DealWithCollision( void DealBW(SandBox *box,int a,int b,Point dir), void DealBB(SandBox *box,int a,int b,Point dir) );
     std::queue< std::tuple<Point, int, int> > forcesqueue;
     /*
 	std::queue< std::tuple<Point, int, double> > wait_f;
