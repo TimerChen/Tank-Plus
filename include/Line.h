@@ -3,7 +3,8 @@
 
 #include "Geometry.h"
 #include "Point.h"
-
+namespace TankPlus
+{
 class Line: public Geometry
 {
 public:
@@ -11,5 +12,5 @@ public:
 	Line( const Point &p1 = Point(), const Point &p2 = Point() );
 
 };
-
+}
 #endif // LINE_H

@@ -3,7 +3,8 @@
 
 #include <Ball.h>
 
-
+namespace TankPlus
+{
 class Ball_Polygon : public Ball
 {
     public:
@@ -20,5 +21,6 @@ class Ball_Polygon : public Ball
 
     private:
 };
+}
 
 #endif // BALL_POLYGON_H

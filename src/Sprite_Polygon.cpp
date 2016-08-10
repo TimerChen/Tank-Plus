@@ -1,5 +1,6 @@
 #include "Sprite_Polygon.h"
-
+namespace TankPlus
+{
 Sprite_Polygon::Sprite_Polygon( int X, int Y, int Z, Polygon POLY, short dis ):
     Sprite_Base( X, Y, Z ), poly(POLY), DISPLAY(dis) {}
 
@@ -35,4 +36,5 @@ void Sprite_Polygon::Draw()
 		}
 		glEnd();
 
+}
 }

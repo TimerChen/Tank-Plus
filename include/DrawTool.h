@@ -3,7 +3,8 @@
 
 #include "Fathers.h"
 #include "Color.h"
-
+namespace TankPlus
+{
 class DrawTool: public Ghost
 {
 public:
@@ -16,7 +17,7 @@ public:
     static void DrawPoint3(int X, int Y, int Z);
 	static void SetColor(Color c);
 };
-
 //const std::string DrawTool::CLASS_NAME = "DrawTool";
+}
 
 #endif // DRAWTOOL_H

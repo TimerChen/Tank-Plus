@@ -1,6 +1,7 @@
 #include "Circle.h"
 #include "Geo_Calc.h"
-
+namespace TankPlus
+{
 Circle::Circle( double R, Point O ):
 r(R), o(O){}
 
@@ -17,4 +18,5 @@ Polygon Circle::to_poly( int EdgeNum, double Start ) const
 
 	return Polygon(tmp);
 
+}
 }

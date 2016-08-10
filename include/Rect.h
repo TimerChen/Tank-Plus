@@ -7,7 +7,8 @@
 
 #include "Fathers.h"
 #include "Polygon.h"
-
+namespace TankPlus
+{
 class Rect: public Ghost
 {
 
@@ -23,6 +24,7 @@ public:
 	Polygon to_poly()const;
 
 };
+}
 
 //const std::string CLASS_NAME = "Rect";
 #endif // RECT_H

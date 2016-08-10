@@ -5,7 +5,8 @@
 #include "Point.h"
 #include "Ball_Polygon.h"
 #include "Wall.h"
-
+namespace TankPlus
+{
 class SandBox: public Ghost
 {
 public:
@@ -50,5 +51,5 @@ private:
 	std::vector<Point>TmpF;
 	*/
 };
-
+}
 #endif // SANDBOX_H

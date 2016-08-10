@@ -4,7 +4,8 @@
 #include "Body.h"
 #include "Polygon.h"
 #include "Color.h"
-
+namespace TankPlus
+{
 class Wall: public Body
 {
 public:
@@ -15,5 +16,5 @@ public:
 	int type;
 
 };
-
+}
 #endif // WALL_H

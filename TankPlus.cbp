@@ -8,37 +8,33 @@
 		<Option virtualFolders="Sprite\;Main\;Draw\;Geometry\;Fathers\;SandBox\;" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/Jump" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/Tank-Plus" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-std=c++11" />
 					<Add option="-g" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/Jump" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/Tank-Plus" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
 				</Compiler>
-				<Linker>
-					<Add option="-s" />
-				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-Wall" />
 			<Add option="-std=c++11" />
-			<Add directory="D:/Projects/TankPlus/include" />
+			<Add option="-Wall" />
+			<Add directory="include" />
 		</Compiler>
 		<Linker>
-			<Add library="glu32" />
-			<Add library="glut32" />
 			<Add library="opengl32" />
+			<Add library="glu32" />
+			<Add library="freeglut.dll" />
 		</Linker>
 		<Unit filename="include/Ball.h">
 			<Option virtualFolder="SandBox/" />

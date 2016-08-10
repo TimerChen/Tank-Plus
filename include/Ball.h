@@ -1,10 +1,11 @@
 #ifndef BALL_H
 #define BALL_H
 
+#include "Geo_Calc.h"
 #include "Body.h"
-#include "Polygon.h"
 #include "Color.h"
-
+namespace TankPlus
+{
 class Ball: public Body
 {
 public:
@@ -21,5 +22,6 @@ public:
 	//void InitCenter ( Point add=Point() );
 	void AddV( const Point &V );
 };
+}
 
 #endif // BALL_H

@@ -1,5 +1,6 @@
 #include "Polygon.h"
-
+namespace TankPlus
+{
 Polygon::Polygon()
 { IS_RECT = 0; }
 
@@ -51,4 +52,5 @@ Polygon operator - ( const Polygon &a, const Point &b )
     for(int i=0; i<=re.points.size(); i++)
         re.points[i] = re.points[i] - b;
     return re;
+}
 }

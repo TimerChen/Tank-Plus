@@ -9,7 +9,8 @@
 #include "Circle.h"
 #include "Color.h"
 
-
+namespace TankPlus
+{
 class Sprite_Circle: public Sprite_Base
 {
 
@@ -32,4 +33,5 @@ public:
 
 };
 //const std::string Sprite_Circle::CLASS_NAME = "Sprite_Circle";
+}
 #endif // SPRITE_CIRCLE_H
