@@ -1,5 +1,5 @@
 #include "Polygon.h"
-namespace TankPlus
+namespace GAME
 {
 Polygon::Polygon()
 { IS_RECT = 0; }

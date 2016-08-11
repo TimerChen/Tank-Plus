@@ -6,7 +6,7 @@
 #define POINT_H
 
 #include "Geometry.h"
-namespace TankPlus
+namespace GAME
 {
 class Point: public Geometry
 {

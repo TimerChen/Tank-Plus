@@ -2,7 +2,7 @@
 #include "Geo_Calc.h"
 #include <cstdio>
 
-namespace TankPlus
+namespace GAME
 {
 const double Sprite_Circle::MIN_LENGTH = 1;
 const int Sprite_Circle::MAX_POINT= 100;

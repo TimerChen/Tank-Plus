@@ -6,7 +6,7 @@
 #define COLOR_H
 
 #include "Fathers.h"
-namespace TankPlus
+namespace GAME
 {
 class Color: public Ghost
 {

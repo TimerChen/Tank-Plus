@@ -1,7 +1,7 @@
 #include "SandBox.h"
 #include "Geo_Calc.h"
 #include <Ball_Polygon.h>
-namespace TankPlus
+namespace GAME
 {
 //Public Functions
 SandBox::SandBox()
@@ -65,6 +65,11 @@ void SandBox::AddForce( Point f, int id, int life )
 {
     if(id >= balls.size())return; //Error occurred.
     forcesqueue.push(std::tuple<Point, int, int>(f,id,life));
+}
+void SandBox::AddBall( Ball ball )
+{
+
+    return id;
 }
 void SandBox::DefaultDealBW( SandBox *box, int a, int b, Point dir )
 {

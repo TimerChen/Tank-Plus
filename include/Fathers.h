@@ -17,7 +17,7 @@
 #define M_PI 3.1415926
 #endif
 
-namespace TankPlus
+namespace GAME
 {
 extern int TIME_COUNT;
 extern int SCREEN_WIDTH;
@@ -26,6 +26,7 @@ extern int SCREEN_DEEPTH;
 extern double eps;
 extern int keyboard[200];
 extern int DIE;
+
 class Object
 {
 public:

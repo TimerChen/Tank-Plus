@@ -3,7 +3,7 @@
 
 #include "Sprite_Base.h"
 #include "SandBox.h"
-namespace TankPlus
+namespace GAME
 {
 class Sprite_SandBox: public Sprite_Base
 {

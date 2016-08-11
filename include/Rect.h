@@ -7,7 +7,7 @@
 
 #include "Fathers.h"
 #include "Polygon.h"
-namespace TankPlus
+namespace GAME
 {
 class Rect: public Ghost
 {

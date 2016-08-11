@@ -1,8 +1,8 @@
 #include "Ball.h"
-namespace TankPlus
+namespace GAME
 {
-Ball::Ball( int ID, double M, Point V, double MAXV ):
-id(ID), m(M), v(V), MAXv(MAXV)
+Ball::Ball( double M, Point V, double MAXV ):
+m(M), v(V), MAXv(MAXV)
 {
 	Default_EdgeColor = Default_InsideColor = 1;
 }

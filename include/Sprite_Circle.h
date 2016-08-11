@@ -9,7 +9,7 @@
 #include "Circle.h"
 #include "Color.h"
 
-namespace TankPlus
+namespace GAME
 {
 class Sprite_Circle: public Sprite_Base
 {

@@ -1,6 +1,6 @@
 #include "Circle.h"
 #include "Geo_Calc.h"
-namespace TankPlus
+namespace GAME
 {
 Circle::Circle( double R, Point O ):
 r(R), o(O){}

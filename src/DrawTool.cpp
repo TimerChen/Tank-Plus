@@ -1,6 +1,6 @@
 #include "DrawTool.h"
 #include "GL/glut.h"
-namespace TankPlus
+namespace GAME
 {
 double DrawTool::Getx( int X )
 {

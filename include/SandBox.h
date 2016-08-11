@@ -5,7 +5,7 @@
 #include "Point.h"
 #include "Ball_Polygon.h"
 #include "Wall.h"
-namespace TankPlus
+namespace GAME
 {
 class SandBox: public Ghost
 {
@@ -32,7 +32,10 @@ public:
     double GetNextTime();
     bool Run( double t, void DealBW(SandBox *box,int a,int b,Point dir), void DealBB(SandBox *box,int a,int b,Point dir) );
     void AddForce( Point f, int id, int life = 1 );
-
+    int AddBall( Ball ball );
+    int AddWall( Wall wall );
+    bool DeleteBall( int id );
+    bool DeleteWall( int id );
     static void DefaultDealBW(SandBox *box, int a, int b, Point dir);
     static void DefaultDealBB(SandBox *box, int a, int b, Point dir);
 

@@ -6,7 +6,7 @@
 
 #include "Fathers.h"
 //#include "Geo_Calc.h"
-namespace TankPlus
+namespace GAME
 {
 class Geometry: public Ghost
 {

@@ -1,5 +1,5 @@
 #include "Geo_Calc.h"
-namespace TankPlus
+namespace GAME
 {
 Point Geo_Calc::Rotate( const Point &a, double rad )
 { return Point( a.x*cos(rad)-a.y*sin(rad), a.x*sin(rad)+a.y*cos(rad) ); }

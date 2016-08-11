@@ -1,8 +1,8 @@
 #include "Wall.h"
-namespace TankPlus
+namespace GAME
 {
-Wall::Wall( Polygon SHAPE, int TYPE):
-shape(SHAPE), type(TYPE)
+Wall::Wall( Polygon SHAPE ):
+shape(SHAPE)
 {
 
 	Default_EdgeColor = Default_InsideColor = 1;

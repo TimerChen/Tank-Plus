@@ -4,7 +4,7 @@
 #include "Geo_Calc.h"
 #include "Body.h"
 #include "Color.h"
-namespace TankPlus
+namespace GAME
 {
 class Ball: public Body
 {
@@ -12,9 +12,9 @@ public:
 
 	Color Color_Edge,Color_Inside;
 	short Default_EdgeColor,Default_InsideColor;
-	int id;
 
-	Ball( int ID = 0, double M = 1, Point V = 0, double MAXV = 8 );
+
+	Ball( double M = 1, Point V = 0, double MAXV = 8 );
 
 	//state
 	Point v,cent,pos;
