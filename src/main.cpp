@@ -1,6 +1,6 @@
-/*
-#include "GL/glut.h"
 
+#include <GL/glut.h>
+/*
 #include "Sprite_Circle.h"
 #include "Sprite_Polygon.h"
 #include "Geo_Calc.h"
@@ -227,26 +227,25 @@ void initialize(){
 	box.walls[0].Color_Inside = Color(2,2,2,0);
 	box.balls[0].Default_InsideColor = 0;
 	box.balls[0].Color_Inside = Color(250,150,70);
-}
+}*/
+void display(){}
 int main(int argc, char *argv[])
 {
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB|GLUT_DOUBLE|GLUT_DEPTH);
-    glutInitWindowSize(GAME::SCREEN_WIDTH, GAME::SCREEN_HEIGHT);
+    glutInitWindowSize(100,100);
     glutCreateWindow("Jump!");
 
-    glutKeyboardFunc(kb);
+    /*glutKeyboardFunc(kb);
     glutSpecialFunc(PushKB);
 	glutSpecialUpFunc(UpKB);
 	glutKeyboardUpFunc(testup);
-	initialize();
+	initialize();*/
 	//glEnable(GL_DEPTH_TEST);
     glutDisplayFunc(display);
-    printf("%d %d\n",GAME::SCREEN_WIDTH, GAME::SCREEN_HEIGHT);
+    //printf("%d %d\n",GAME::SCREEN_WIDTH, GAME::SCREEN_HEIGHT);
     glutIdleFunc(display);
     glutMainLoop();
     return 0;
 }
-*/
-int main(){return 0;}
