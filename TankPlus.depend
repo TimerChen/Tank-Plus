@@ -694,8 +694,8 @@
 1470813113 source:d:\src\tank-plus\src\line.cpp
 	"Line.h"
 
-1470813141 source:d:\src\tank-plus\src\main.cpp
-	"GL/glut.h"
+1470815603 source:d:\src\tank-plus\src\main.cpp
+	<GL/glut.h>
 	"Sprite_Circle.h"
 	"Sprite_Polygon.h"
 	"Geo_Calc.h"
