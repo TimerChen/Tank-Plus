@@ -3,9 +3,13 @@
 	"DrawTool.h"
 	"GL/glut.h"
 
+1470813122 "
+
 1428025594 /home/timemachine/Documents/Tuifei/OpenGL/Jump/DrawTool.h
 	"Fathers.h"
 	"Color.h"
+
+1470813201 
 
 1428223715 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Fathers.h
 	<vector>
@@ -27,6 +31,8 @@
 
 1428069447 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/Geo_Calc.cpp
 	"Geo_Calc.h"
+
+1470813207 h"
 
 1428019742 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Geo_Clac.h
 	"Point.h"
@@ -79,6 +85,8 @@
 
 1427795869 source:/home/timemachine/Documents/Tuifei/OpenGL/Jump/Sprite_Polygon.cpp
 	"Sprite_Polygon.h"
+
+1470813238 lygon.h"
 
 1427788761 /home/timemachine/Documents/Tuifei/OpenGL/Jump/Sprite_Polygon.h
 	"Sprite_Base.h"
@@ -582,6 +590,8 @@
 	"Ball_Polygon.h"
 	<Geo_Calc.h>
 
+1470813186 h>
+
 1470760067 d:\projects\tankplus\include\ball_polygon.h
 	<Ball.h>
 
@@ -611,6 +621,8 @@
 	"SandBox.h"
 	"Geo_Calc.h"
 	<Ball_Polygon.h>
+
+1470813331 gon.h>
 
 1470813180 source:d:\src\tank-plus\src\ball.cpp
 	"Ball.h"
@@ -763,4 +775,66 @@
 
 1470813201 source:d:\src\tank-plus\src\wall.cpp
 	"Wall.h"
+
+1470836291 source:/home/liangjs/stui/Tank-Plus/src/Ball.cpp
+	"Ball.h"
+
+1470836291 /home/liangjs/stui/Tank-Plus/include/Ball.h
+	"Geo_Calc.h"
+	"Body.h"
+	"Color.h"
+
+1470836291 /home/liangjs/stui/Tank-Plus/include/Geo_Calc.h
+	"Polygon.h"
+	"Point.h"
+	"Circle.h"
+	"Rect.h"
+	"Line.h"
+
+1470836291 /home/liangjs/stui/Tank-Plus/include/Polygon.h
+	<vector>
+	"Point.h"
+
+1470836291 /home/liangjs/stui/Tank-Plus/include/Point.h
+	"Geometry.h"
+
+1470836291 /home/liangjs/stui/Tank-Plus/include/Geometry.h
+	"Fathers.h"
+
+1470836291 /home/liangjs/stui/Tank-Plus/include/Fathers.h
+	<vector>
+	<string>
+	<cmath>
+	<queue>
+	<cstdio>
+	<tuple>
+
+1470836291 /home/liangjs/stui/Tank-Plus/include/Circle.h
+	"Polygon.h"
+	"DrawTool.h"
+
+1470836291 /home/liangjs/stui/Tank-Plus/include/DrawTool.h
+	"Fathers.h"
+	"Color.h"
+
+1470836291 /home/liangjs/stui/Tank-Plus/include/Color.h
+	"Fathers.h"
+
+1470836291 /home/liangjs/stui/Tank-Plus/include/Rect.h
+	"Fathers.h"
+	"Polygon.h"
+
+1470836291 /home/liangjs/stui/Tank-Plus/include/Line.h
+	"Geometry.h"
+	"Point.h"
+
+1470836291 /home/liangjs/stui/Tank-Plus/include/Body.h
+	"Fathers.h"
+
+1470836291 source:/home/liangjs/stui/Tank-Plus/src/Ball_Polygon.cpp
+	"Ball_Polygon.h"
+	<Geo_Calc.h>
+
+1470836291 /home/liangjs/stui/Tank-Plus/include/Ball_Polygon.h
+	<Ball.h>
 
