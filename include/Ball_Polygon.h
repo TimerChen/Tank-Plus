@@ -3,7 +3,7 @@
 
 #include <Ball.h>
 
-namespace TankPlus
+namespace GAME
 {
 class Ball_Polygon : public Ball
 {

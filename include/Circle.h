@@ -3,7 +3,7 @@
 
 #include "Polygon.h"
 #include "DrawTool.h"
-namespace TankPlus
+namespace GAME
 {
 class Circle: public Geometry
 {

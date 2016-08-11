@@ -3,7 +3,7 @@
 
 #include "Target.h"
 
-namespace TankPlus
+namespace GAME
 {
 class Barrier: public Target
 {

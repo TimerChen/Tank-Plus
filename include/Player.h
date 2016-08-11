@@ -6,7 +6,7 @@
 #include "Point.h"
 #include "Info.h"
 
-namespace TankPlus
+namespace GAME
 {
 
 class Player

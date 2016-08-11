@@ -4,7 +4,7 @@
 #include <string>
 #include "Target.h"
 
-namespace TankPlus
+namespace GAME
 {
 class Module: public Target
 {

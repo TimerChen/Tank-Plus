@@ -4,7 +4,7 @@
 #include <vector>
 #include "Polygon.h"
 
-namespace TankPlus
+namespace GAME
 {
 struct Tmap
 {

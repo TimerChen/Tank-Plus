@@ -6,7 +6,7 @@
 #include "Player.h"
 #include <vector>
 
-namespace TankPlus
+namespace GAME
 {
 class Battlefield
 {

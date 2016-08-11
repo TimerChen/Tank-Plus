@@ -1,7 +1,7 @@
 #ifndef OPERATION_H
 #define OPERATION_H
 
-namespace TankPlus
+namespace GAME
 {
 class Operation
 {

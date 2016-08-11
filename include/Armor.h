@@ -2,7 +2,7 @@
 #define ARMOR_H
 
 #include "Module.h"
-namespace TankPlus
+namespace GAME
 {
 class Armor: public Module
 {

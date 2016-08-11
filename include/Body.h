@@ -2,7 +2,7 @@
 #define BODY_H
 
 #include "Fathers.h"
-namespace TankPlus
+namespace GAME
 {
 class Body: public Ghost
 {

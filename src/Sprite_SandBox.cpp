@@ -1,7 +1,7 @@
 #include "Sprite_SandBox.h"
 #include "Sprite_Polygon.h"
 #include "Ball.h"
-namespace TankPlus
+namespace GAME
 {
 Sprite_SandBox::Sprite_SandBox( int X, int Y, int Z, SandBox* AIM, short dis ):
 //Sprite_Base(X, Y, Z),aim(AIM), DISPLAY(dis){  }

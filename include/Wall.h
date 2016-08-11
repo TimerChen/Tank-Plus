@@ -4,7 +4,7 @@
 #include "Body.h"
 #include "Polygon.h"
 #include "Color.h"
-namespace TankPlus
+namespace GAME
 {
 class Wall: public Body
 {

@@ -9,7 +9,7 @@
 #include "Sensor_Tank.h"
 #include "Target.h"
 
-namespace TankPlus
+namespace GAME
 {
 class Tank
 {

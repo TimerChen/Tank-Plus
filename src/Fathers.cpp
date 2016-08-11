@@ -6,7 +6,7 @@
 
 //const std::string Ghost::CLASS_NAME = "Ghost";
 
-namespace TankPlus
+namespace GAME
 {
 int TIME_COUNT		=	0;
 int SCREEN_WIDTH	=	640;

@@ -4,7 +4,7 @@
 #include "Geo_Calc.h"
 #include "Body.h"
 #include "Color.h"
-namespace TankPlus
+namespace GAME
 {
 class Ball: public Body
 {

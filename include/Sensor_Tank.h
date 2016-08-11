@@ -3,7 +3,7 @@
 
 #include "Shell.h"
 
-namespace TankPlus
+namespace GAME
 {
 class Sensor_Tank: public Shell
 {

@@ -5,7 +5,7 @@
 #include <vector>
 #include "Sensor_Shell.h"
 
-namespace TankPlus
+namespace GAME
 {
 class Shell: public Target
 {

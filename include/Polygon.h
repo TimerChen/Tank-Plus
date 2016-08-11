@@ -7,7 +7,7 @@
 
 #include <vector>
 #include "Point.h"
-namespace TankPlus
+namespace GAME
 {
 class Polygon: public Geometry
 {

@@ -5,7 +5,7 @@
 #include "Shell.h"
 #include "Barrier.h"
 
-namespace TankPlus
+namespace GAME
 {
 class PlayerInfo
 {

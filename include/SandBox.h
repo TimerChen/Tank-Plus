@@ -5,7 +5,7 @@
 #include "Point.h"
 #include "Ball_Polygon.h"
 #include "Wall.h"
-namespace TankPlus
+namespace GAME
 {
 class SandBox: public Ghost
 {

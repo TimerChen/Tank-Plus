@@ -3,7 +3,7 @@
 
 #include "Fathers.h"
 #include "Color.h"
-namespace TankPlus
+namespace GAME
 {
 class DrawTool: public Ghost
 {

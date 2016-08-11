@@ -1,5 +1,5 @@
 #include "Ball.h"
-namespace TankPlus
+namespace GAME
 {
 Ball::Ball( int ID, double M, Point V, double MAXV ):
 id(ID), m(M), v(V), MAXv(MAXV)

@@ -3,7 +3,7 @@
 
 #include "Module.h"
 
-namespace TankPlus
+namespace GAME
 {
 class Sensor: public Module
 {

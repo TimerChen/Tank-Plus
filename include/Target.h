@@ -1,7 +1,7 @@
 #ifndef TARGET_H
 #define TARGET_H
 
-namespace TankPlus
+namespace GAME
 {
 class Target
 {

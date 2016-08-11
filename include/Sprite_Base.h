@@ -8,7 +8,7 @@
 #include <GL/gl.h>
 #include "Fathers.h"
 #include "DrawTool.h"
-namespace TankPlus
+namespace GAME
 {
 class Sprite_Base: public Entity
 {

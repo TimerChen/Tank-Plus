@@ -7,7 +7,7 @@
 
 #include "Sprite_Base.h"
 #include "Polygon.h"
-namespace TankPlus
+namespace GAME
 {
 class Sprite_Polygon: public Sprite_Base
 {

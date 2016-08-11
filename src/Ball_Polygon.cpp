@@ -1,6 +1,6 @@
 #include "Ball_Polygon.h"
 #include <Geo_Calc.h>
-namespace TankPlus
+namespace GAME
 {
 Ball_Polygon::Ball_Polygon( int ID, double M, Point V, double MAXV, Polygon SHAPE, double ROTATE_V, double ROTATE_RANGLE, Point CENTER_SHIFT ):
 Ball( ID, M, V, MAXV ), shape(SHAPE), rotate_v( ROTATE_V ), rotate_rangle( ROTATE_RANGLE )

@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace TankPlus
+namespace GAME
 {
 class Tank;
 

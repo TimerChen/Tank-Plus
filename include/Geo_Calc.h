@@ -6,7 +6,7 @@
 #include "Circle.h"
 #include "Rect.h"
 #include "Line.h"
-namespace TankPlus
+namespace GAME
 {
 class Geo_Calc: public Ghost
 {

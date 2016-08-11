@@ -1,5 +1,5 @@
 #include "Wall.h"
-namespace TankPlus
+namespace GAME
 {
 Wall::Wall( Polygon SHAPE, int TYPE):
 shape(SHAPE), type(TYPE)
