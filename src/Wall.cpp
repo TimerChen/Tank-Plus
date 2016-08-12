@@ -1,11 +1,13 @@
 #include "Wall.h"
 namespace GAME
 {
-Wall::Wall( Polygon SHAPE, int TYPE):
-shape(SHAPE), type(TYPE)
+
+Wall::Wall( short TYPE_SHAPE, Polygon SHAPE ):
+type_shape(TYPE_SHAPE), shape(SHAPE)
 {
 
 	Default_EdgeColor = Default_InsideColor = 1;
 
 }
+
 }

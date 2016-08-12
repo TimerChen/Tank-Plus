@@ -30,16 +30,19 @@ public:
 	static Polygon RectToPolygon( const Rect &r );
     static Polygon CircleToPolygon( const Circle &o, int EdgeNum, double Start );
     static Polygon Rotate( const Point &o, const Polygon &a, double rad );
-
+    static double GetPolygonArea( const Polygon &a );
+    static double GetPolygonArea( const Polygon &a, const Point &b );
 	//Line
 	static Point GetPoint_LineToLine( const Line &a, const Line &b );
 	//
+	//0:直线 1:线段
 	static double Dis_PointToLine( const Point &a, const Line &b, short type = 1 );
-	//static double Dis_PointToPolygon
+	//0:多边形只有边框 1:实心多边形
+	static double Dis_PointToPolygon( const Point &a, const Polygon &b, short type = 1 );
 	static double Dis_LineToLine ( const Line &a, const Line &b );
     //Kick
     static bool CheckKick_LineToLine( const Line &a, const Line &b);
-    static bool CheckKick_PolygonToPolygon( const Polygon &a, const Polygon &b);
+    static bool CheckKick_PolygonToPolygon( const Polygon &a, const Polygon &b,short type = 1 );
 
 };
 

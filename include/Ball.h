@@ -12,9 +12,11 @@ public:
 
 	Color Color_Edge,Color_Inside;
 	short Default_EdgeColor,Default_InsideColor;
-	int id;
+	//0:只有边框 1:实心
+	short type_shape;
 
-	Ball( int ID = 0, double M = 1, Point V = 0, double MAXV = 8 );
+
+	Ball( short TYPE_SHAPE = 1, double M = 1, Point V = 0, double MAXV = 8 );
 
 	//state
 	Point v,cent,pos;

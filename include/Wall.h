@@ -12,8 +12,8 @@ public:
 	Polygon shape;
 	Color Color_Edge,Color_Inside;
 	short Default_EdgeColor,Default_InsideColor;
-    Wall( Polygon SHAPE = Polygon(), int TYPE = 0 );
-	int type;
+	short type_shape;
+    Wall( short TYPE_SHAPE = 1, Polygon SHAPE = Polygon() );
 
 };
 }

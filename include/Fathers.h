@@ -26,6 +26,7 @@ extern int SCREEN_DEEPTH;
 extern double eps;
 extern int keyboard[200];
 extern int DIE;
+
 class Object
 {
 public:
