@@ -25,6 +25,7 @@ public:
 	std::vector<Ball_Polygon> *shape;
 	Barrier *barrier;
 	int winner;
+	bool quit;
 };
 }
 

@@ -28,8 +28,9 @@ public:
     void SetArmor(int id, const std::vector<Armor> &armor);
     void SetSensor(int id, const std::vector<Sensor_Tank> &sensor);
     void SetGroup(int id, int group);
-    bool Start();
+    void Start();
 	int Run(); // return winner, if no winner, return -1
+	void Close();
 
 private:
     std::vector<Operation> op;
@@ -38,6 +39,7 @@ private:
     int check_winner();
 
     std::vector<std::thread> threads;
+    static void PlayerStart(Battlefield *self, int id);
 };
 }
 

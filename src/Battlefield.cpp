@@ -9,9 +9,15 @@ Battlefield::Battlefield(const Tmap &tmap)
 {
 }
 
-bool Battlefield::Start()
+void Battlefield::Start()
 {
+    for (int i = 0; i < player.size(); ++i)
+        threads.push_back(std::thread(Battlefield::PlayerStart, this, i));
+}
 
+void Battlefield::PlayerStart(Battlefield *self, int id)
+{
+    self->player[id]->run();
 }
 
 int Battlefield::Run()
@@ -23,12 +29,12 @@ int Battlefield::Run()
 int Battlefield::check_winner()
 {
     int winner = -1;
-    for (size_t i = 0; i < player.size(); ++i)
+    for (int i = 0; i < player.size(); ++i)
         if (target[player[i]->tank.target].blood != 0)
         {
             if (winner == -1)
                 winner = i;
-            else if (winner != (int)i)
+            else if (winner != i)
                 return -1;
         }
     return winner;
@@ -88,6 +94,16 @@ void Battlefield::SetWeapon(int id, const std::vector<Weapon> &weapon)
 void Battlefield::SetGroup(int id, int group)
 {
     player[id]->group = group;
+}
+
+void Battlefield::Close()
+{
+    for (auto i : info)
+        i.quit = true;
+    for (int i = 0; i < player.size(); ++i)
+        threads[i].join();
+    for (auto i : player)
+        delete i;
 }
 
 }

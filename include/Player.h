@@ -22,6 +22,7 @@ public:
 	Player(const Info *info, Operation *operation);
 	PlayerInfo to_info(const Point &pos);
 	virtual void run() = 0;
+	virtual ~Player() {}
 };
 
 }
