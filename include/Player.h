@@ -5,20 +5,23 @@
 #include "Operation.h"
 #include "Point.h"
 #include "Info.h"
+#include "Item.h"
+#include <vector>
 
 namespace GAME
 {
 
 class Player
 {
-protected:
+public:
 	int id, group, money;
 	Tank tank;
+	std::vector<Item> item;
     Operation *op;
-    Info *info;
-public:
-	Player(Info *info, Operation *operation);
+    const Info *info;
+	Player(const Info *info, Operation *operation);
 	PlayerInfo to_info(const Point &pos);
+	virtual void run() = 0;
 };
 
 }

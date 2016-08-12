@@ -4,11 +4,13 @@
 #include "Player.h"
 #include "Shell.h"
 #include "Barrier.h"
+#include "Ball_Polygon.h"
 
 namespace GAME
 {
 class PlayerInfo
 {
+public:
 	int id, group;
 	bool visible;
 	Tank tank;
@@ -16,9 +18,13 @@ class PlayerInfo
 
 class Info
 {
+public:
 	std::vector<PlayerInfo> playerinfo;
-	std::vector<Shell> shell;
-	std::vector<Barrier> barrier;
+	std::vector<Shell> *shell;
+	std::vector<Target> *target;
+	std::vector<Ball_Polygon> *shape;
+	Barrier *barrier;
+	int winner;
 };
 }
 

@@ -2,14 +2,14 @@
 #define MODULE_H
 
 #include <string>
-#include "Target.h"
 
 namespace GAME
 {
-class Module: public Target
+class Module
 {
 public:
 	std::string name;
+	int target;
 };
 }
 

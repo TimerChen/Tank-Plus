@@ -1,13 +1,20 @@
 #ifndef OPERATION_H
 #define OPERATION_H
 
+#include "Point.h"
+
 namespace GAME
 {
 class Operation
 {
-	bool up, down, left, right;
+private:
+	Point dir;
 	bool shoot;
-	int prop, weapon;
+	int item, weapon;
+	    //-1
+	Point gundir;
+public:
+	Operation();
 };
 }
 
