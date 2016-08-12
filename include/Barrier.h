@@ -2,12 +2,14 @@
 #define BARRIER_H
 
 #include "Target.h"
+#include <vector>
 
 namespace GAME
 {
-class Barrier: public Target
+class Barrier
 {
-
+public:
+    std::vector<int> target;
 };
 }
 

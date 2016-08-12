@@ -7,13 +7,11 @@
 
 namespace GAME
 {
-class Shell: public Target
+class Shell
 {
 public:
-	int shape;//id
-	Point target;
-	int attack, failatk;
-	double penetrate;
+	int shape, target;//id
+	int attack;
 	std::vector<Sensor_Shell> sensor;
 };
 }

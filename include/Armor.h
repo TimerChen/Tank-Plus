@@ -7,7 +7,8 @@ namespace GAME
 class Armor: public Module
 {
 public:
-	double denfence;
+	int denfence;
+	int id;
 };
 }
 

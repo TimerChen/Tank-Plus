@@ -5,15 +5,11 @@
 
 namespace GAME
 {
-class Battlefield;
-class Point;
-
 class Weapon: public Module
 {
 public:
-	int attack, oldattack, failatk;
-	double penetrate, oldpenetrate;
-	void shoot(Battlefield *field, const Point &pos);
+	int attack;
+	int id;
 };
 }
 
