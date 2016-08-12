@@ -5,7 +5,7 @@
 		<Option title="TankPlus" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="Sprite/;Main/;Draw/;Geometry/;Fathers/;SandBox/;Game/;" />
+		<Option virtualFolders="Sprite\;Main\;Draw\;Geometry\;Fathers\;SandBox\;Game\;Tools\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/Tank-Plus" prefix_auto="1" extension_auto="1" />
@@ -14,6 +14,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -23,6 +24,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 		</Build>
@@ -75,6 +77,8 @@
 		<Unit filename="include/Geometry.h">
 			<Option virtualFolder="Geometry/" />
 		</Unit>
+		<Unit filename="include/Hash.h" />
+		<Unit filename="include/IndexManager.h" />
 		<Unit filename="include/Info.h">
 			<Option virtualFolder="Game/" />
 		</Unit>
@@ -165,6 +169,8 @@
 		<Unit filename="src/Geo_Calc.cpp">
 			<Option virtualFolder="Geometry/" />
 		</Unit>
+		<Unit filename="src/Hash.cpp" />
+		<Unit filename="src/IndexManager.cpp" />
 		<Unit filename="src/Line.cpp">
 			<Option virtualFolder="Geometry/" />
 		</Unit>

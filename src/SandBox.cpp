@@ -16,7 +16,7 @@ void SandBox::Refresh()
     left_time = 1;
 
     //Add forces
-    int fn = forcesqueue.size();
+    int fn = queue_forces.size();
     std::tuple<Point, int, int> tf;
 
     for( int i=0; i<num_balls; i++ )
@@ -24,13 +24,13 @@ void SandBox::Refresh()
     for( int i=0; i<fn; i++ )
     {
         int id;
-        tf = forcesqueue.front();
-        forcesqueue.pop();
+        tf = queue_forces.front();
+        queue_forces.pop();
         id = std::get<1>(tf);
         std::get<2>(tf) = std::get<2>(tf) - 1;
         forces[id] = forces[id] + std::get<0>(tf);
         forces[id] = forces[id] + Field_Force;
-        if( std::get<2>(tf)>0 ) forcesqueue.push(tf);
+        if( std::get<2>(tf)>0 ) queue_forces.push(tf);
     }
 
 }
@@ -40,18 +40,32 @@ double SandBox::GetNextTime()
 
     //
     double l,r;
+    HashCode status1,status2;
     std::vector<Ball_Polygon> tmp_balls;
+
     l = 0;r = left_time;
+
+    tmp_balls = GetNextBalls(l);
+    status1 = CollisionCheck( &tmp_balls );
+
+    //想做得更精细可以暴力从中间挑几个时间check一下
+
+    tmp_balls = GetNextBalls(r);
+    status2 = CollisionCheck( &tmp_balls );
+
+    if(status1 == status2) return r;
+
     while( r-l < 1e-10 )
     {
         double mid = (l + r)/2;
         tmp_balls = GetNextBalls(mid);
-        if( CollisionCheck( &tmp_balls ) )
-            r = mid;
-        else
+        status2 = CollisionCheck( &tmp_balls );
+        if( status1 == status2 )
             l = mid;
+        else
+            r = mid;
     }
-    return l;
+    return r;
 }
 bool SandBox::Run(double t, void DealBW(SandBox *box,int a,int b,Point dir), void DealBB(SandBox *box,int a,int b,Point dir) )
 {
@@ -64,12 +78,64 @@ bool SandBox::Run(double t, void DealBW(SandBox *box,int a,int b,Point dir), voi
 void SandBox::AddForce( Point f, int id, int life )
 {
     if(id >= balls.size())return; //Error occurred.
-    forcesqueue.push(std::tuple<Point, int, int>(f,id,life));
+    queue_forces.push(std::tuple<Point, int, int>(f,id,life));
 }
-void SandBox::AddBall( Ball ball )
+int SandBox::AddBall( Ball_Polygon ball )
 {
+    int id;
+    id = balls_im.GetNew();
+    if(id >= balls.size())
+    {
+        balls.push_back(ball);
+    }
+    else
+    {
+        balls[id] = ball;
+    }
 
     return id;
+}
+int SandBox::AddWall( Wall wall )
+{
+    int id;
+    id = walls_im.GetNew();
+    if(id >= walls.size())
+    {
+        walls.push_back(wall);
+    }
+    else
+        walls[id] = wall;
+
+    return id;
+}
+bool SandBox::DeleteBall( int id )
+{
+    if (balls_im.isAvailable(id)) return 0;
+    balls_im.erase(id);
+    while( balls.size() && !balls_im.isAvailable(balls.size()-1) )
+    {
+        balls.pop_back();
+    }
+    //clear old forces.
+    int qn = queue_forces.size();
+    for(int i=1;i<=qn;i++)
+    {
+        std::tuple<Point, int, int> tmpf;
+        tmpf = queue_forces.front();
+        queue_forces.pop();
+        if(std::get<1>(tmpf) != id)queue_forces.push(tmpf);
+    }
+    return 1;
+}
+bool SandBox::DeleteWall( int id )
+{
+    if(walls_im.isAvailable(id)) return 0;
+    walls_im.erase(id);
+    while( walls.size() && !walls_im.isAvailable(walls.size()-1) )
+    {
+        walls.pop_back();
+    }
+    return 1;
 }
 void SandBox::DefaultDealBW( SandBox *box, int a, int b, Point dir )
 {
@@ -117,20 +183,36 @@ std::vector<Ball_Polygon> SandBox::GetNextBalls( double t )
     }
     return reballs;
 }
-bool SandBox::CollisionCheck( std::vector<Ball_Polygon> *b )
+HashCode SandBox::CollisionCheck( std::vector<Ball_Polygon> *b )
 {
-
+    std::vector<int> blist,wlist;
+    balls_im.Get_index();
+    walls_im.Get_index();
+    blist = balls_im.index;
+    wlist = walls_im.index;
+    HashCode hc;
+    int i,j;
     //Check Balls and Walls
-    for(int i=0; i<(*b).size(); i++)
-    for(int j=0; j<walls.size(); j++)
-    if( Geo_Calc::CheckKick_PolygonToPolygon( (*b)[i].real_shape, walls[j].shape ) )
-        return 1;
+    for(int ii=0; ii<blist.size(); ii++)
+    for(int jj=0; jj<wlist.size(); jj++)
+    {
+        i = blist[ii];
+        j = wlist[jj];
+        if( Geo_Calc::CheckKick_PolygonToPolygon( (*b)[i].real_shape, walls[j].shape ) )
+            hc = hc + ( std::to_string(i) + std::to_string(j) );
+    }
+    hc = hc + std::string("#");
     //Check Balls and Balls
-    for(int i=0; i<(*b).size(); i++)
-    for(int j=0; j<(*b).size(); j++)
-    if( Geo_Calc::CheckKick_PolygonToPolygon( (*b)[i].real_shape, (*b)[j].real_shape ) )
-        return 1;
-    return 0;
+    for(int ii=0; ii<blist.size(); ii++)
+    for(int jj=0; jj<blist.size(); jj++)
+    {
+        i = blist[ii];
+        j = wlist[jj];
+        if( Geo_Calc::CheckKick_PolygonToPolygon( (*b)[i].real_shape, (*b)[j].real_shape, 1 ) )
+            hc = hc + ( std::to_string(i) + std::to_string(j) );
+    }
+
+    return hc;
 }
 bool SandBox::isCollision( int a, int b, Polygon pa, Polygon pb, void Deal(SandBox *box, int a,int b,Point dir) )
 {
@@ -147,31 +229,40 @@ bool SandBox::isCollision( int a, int b, Polygon pa, Polygon pb, void Deal(SandB
 }
 void SandBox::DealWithCollision( void DealBW(SandBox *box, int a,int b, Point dir), void DealBB(SandBox *box, int a,int b, Point dir) )
 {
+    std::vector<int> blist,wlist;
+    balls_im.Get_index();
+    walls_im.Get_index();
+    blist = balls_im.index;
+    wlist = walls_im.index;
+    int i,j;
     //Check Balls and Walls
-    for(int i=0; i<balls.size(); i++)
+    for(int ii=0; ii<balls.size(); ii++)
     {
-        balls[i].real_shape = balls[i].real_shape + balls[i].v*1e-7;
-        for(int j=0; j<walls.size(); j++)
+        //balls[i].real_shape = balls[i].real_shape + balls[i].v*1e-7;
+        for(int jj=0; jj<walls.size(); jj++)
         {
-            isCollision(i, j, balls[i].real_shape, walls[j].shape, SandBox::DefaultDealBW);
+            i = blist[ii];
+            j = wlist[jj];
+            isCollision(ii, jj, balls[ii].real_shape, walls[jj].shape, SandBox::DefaultDealBW);
         }
-        balls[i].real_shape = balls[i].real_shape - balls[i].v*1e-7;
+        //balls[i].real_shape = balls[i].real_shape - balls[i].v*1e-7;
     }
 
     //Check Balls and Balls
-    for(int i=0; i<balls.size(); i++)
+    for(int ii=0; ii<balls.size(); ii++)
     {
-        balls[i].real_shape = balls[i].real_shape + balls[i].v*1e-7;
-        for(int j=0; j<balls.size(); j++)
+        //balls[i].real_shape = balls[i].real_shape + balls[i].v*1e-7;
+        for(int jj=0; jj<balls.size(); jj++)
         {
-            balls[j].real_shape = balls[j].real_shape + balls[j].v*1e-7;
-
+            //balls[j].real_shape = balls[j].real_shape + balls[j].v*1e-7;
+            i = blist[ii];
+            j = blist[jj];
             if (! isCollision(i, j, balls[i].real_shape, balls[j].real_shape, SandBox::DefaultDealBB) )
             isCollision(j, i, balls[j].real_shape, balls[i].real_shape, SandBox::DefaultDealBB);
 
-            balls[j].real_shape = balls[j].real_shape - balls[j].v*1e-7;
+            //balls[j].real_shape = balls[j].real_shape - balls[j].v*1e-7;
         }
-        balls[i].real_shape = balls[i].real_shape - balls[i].v*1e-7;
+        //balls[i].real_shape = balls[i].real_shape - balls[i].v*1e-7;
     }
 }
 }

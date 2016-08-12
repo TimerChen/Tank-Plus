@@ -1,8 +1,8 @@
 #include "Ball.h"
 namespace GAME
 {
-Ball::Ball( double M, Point V, double MAXV ):
-m(M), v(V), MAXv(MAXV)
+Ball::Ball( short TYPE_SHAPE, double M, Point V, double MAXV ):
+type_shape(TYPE_SHAPE), m(M), v(V), MAXv(MAXV)
 {
 	Default_EdgeColor = Default_InsideColor = 1;
 }

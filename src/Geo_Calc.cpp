@@ -64,7 +64,17 @@ Polygon Geo_Calc::Rotate( const Point &o, const Polygon &a, double Rad )
 
 	return re;
 }
-
+double Geo_Calc::GetPolygonArea( const Polygon &a )
+{
+    return GetPolygonArea(a, a.points[0]);
+}
+double Geo_Calc::GetPolygonArea( const Polygon &a, const Point &b )
+{
+    double re = 0;
+    for(int i=0; i<a.points.size();i++)
+        re += Cross(a.points[i]-b, a.points[(i+1)%a.points.size()]-b);
+    return re;
+}
 Point Geo_Calc::GetPoint_LineToLine( const Line &a, const Line &b)
 {
 
@@ -82,6 +92,22 @@ double Geo_Calc::Dis_PointToLine( const Point &a, const Line &b, short type )
 	else if( Dot( v1, v3 ) > eps ) return Length(v3);
 	return fabs( Cross( b.v, a-b.p ) / Length( b.v ) );
 
+}
+double Geo_Calc::Dis_PointToPolygon( const Point &a, const Polygon &b, short type )
+{
+    double re = 1e50,tmp;
+    for(int i=0; i<b.points.size();i++)
+    {
+        tmp = Dis_PointToLine(a, Line(b.points[i], b.points[(i+1)%b.points.size()]), 1);
+        re = tmp < re ? tmp : re;
+    }
+    if(!type) return re;
+
+    double area1,area2;
+    area1 = GetPolygonArea( b );
+    area2 = GetPolygonArea( b, a );
+    if( fabs(area1-area2) < eps )re = 0;
+    return re;
 }
 double Geo_Calc::Dis_LineToLine ( const Line &a, const Line &b )
 {
@@ -105,7 +131,7 @@ bool Geo_Calc::CheckKick_LineToLine( const Line &a, const Line &b )
     return ba < -eps && bb < -eps;
 
 }
-bool Geo_Calc::CheckKick_PolygonToPolygon( const Polygon &a, const Polygon &b )
+bool Geo_Calc::CheckKick_PolygonToPolygon( const Polygon &a, const Polygon &b,short type )
 {
 	int i, j;
 
@@ -117,6 +143,15 @@ bool Geo_Calc::CheckKick_PolygonToPolygon( const Polygon &a, const Polygon &b )
 			return 1;
 		}
 	}
+	if(!type) return 0;
+
+	for( i=0; i<a.points.size(); i++)
+        if(Dis_PointToPolygon(a.points[i], b))
+            return 1;
+    for( i=0; i<b.points.size(); i++)
+        if(Dis_PointToPolygon(b.points[i], a))
+            return 1;
+
 	return 0;
 }
 }
