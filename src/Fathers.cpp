@@ -15,4 +15,5 @@ int SCREEN_DEEPTH	=	200;
 double eps = 1e-2;
 int keyboard[200];
 int DIE;
+int RunTimes;
 }

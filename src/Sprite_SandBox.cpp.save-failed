@@ -34,12 +34,11 @@ void Sprite_SandBox::Draw()
 
     for( std::set<int>::iterator ii=bset->begin(); ii!=bset->end(); ii++)
     {
-        //printf("%d\n",*ii);
+        printf("");
         i = *ii;
 
         aim->balls[i].GetRealShape();
         s_tmp.poly = aim->balls[i].real_shape;
-        //s_tmp.poly = aim->balls[i].shape;
 
         if(aim->balls[i].Default_EdgeColor) s_tmp.Color_Edge = Color_Ball_Edge;
         else s_tmp.Color_Edge = aim->balls[i].Color_Edge;

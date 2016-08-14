@@ -27,6 +27,8 @@ extern double eps;
 extern int keyboard[200];
 extern int DIE;
 
+extern int RunTimes;
+
 class Object
 {
 public:

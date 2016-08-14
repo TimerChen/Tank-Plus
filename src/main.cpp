@@ -1,6 +1,8 @@
 
 #include <GL/glut.h>
-/*
+
+
+
 #include "Sprite_Circle.h"
 #include "Sprite_Polygon.h"
 #include "Geo_Calc.h"
@@ -14,8 +16,8 @@ using namespace GAME;
 double last[2];
 Sprite_SandBox screen;
 SandBox box;
-int RunTimes,Last = clock();
-
+int Last = clock();
+/*
 int AllZ;
 Point S;
 void DealWithKey()
@@ -228,14 +230,79 @@ void initialize(){
 	box.balls[0].Default_InsideColor = 0;
 	box.balls[0].Color_Inside = Color(250,150,70);
 }*/
-void display(){}
+void initialize()
+{
+
+    screen = Sprite_SandBox( 0,0,5,&box,1 );
+    screen.Color_Ball_Edge = Color(255,255,255);
+    screen.Color_Ball_Inside = Color(200,150,150,200);
+    screen.Color_Wall_Edge = Color(255,255,255);
+    screen.Color_Wall_Inside =Color(100,100,100,200);
+    box.Field_Force = Point(0,2);
+
+    Ball_Polygon nb;
+    Wall nw;
+    nw = Wall(1,GAME::Polygon(Point(1,GAME::SCREEN_HEIGHT-80-50), Point(GAME::SCREEN_WIDTH,GAME::SCREEN_HEIGHT-50) ) );
+    box.AddWall(nw);
+    nw = Wall(1,GAME::Polygon(Point(1,1), Point(GAME::SCREEN_WIDTH,7) ) );
+    box.AddWall(nw);
+    nw = Wall(1,GAME::Polygon(Point(1,1), Point(7,GAME::SCREEN_HEIGHT-1) ) );
+    box.AddWall(nw);
+    nw = Wall(1,GAME::Polygon(Point(GAME::SCREEN_WIDTH-7,1), Point(GAME::SCREEN_WIDTH,GAME::SCREEN_HEIGHT) ) );
+    box.AddWall(nw);
+
+    nb = Ball_Polygon(1,2,0,8, GAME::Polygon(Point(-15,-15), Point(+15,+15)) );
+
+    nb.pos =Point(GAME::SCREEN_WIDTH/2-50,20);
+    int ids_b[10],ids_w[10];
+    ids_b[0] = box.AddBall(nb);
+
+    nb.pos = nb.pos + Point(100,5);
+
+	nb.Default_InsideColor = 0;
+	nb.Color_Inside = Color(250,150,70);
+    nb.rotate_v = 0.2;
+    ids_b[1] = box.AddBall(nb);
+
+    box.AddForce(Point(-1.5,0),ids_b[1],5);
+
+}
+void display()
+{
+    RunTimes++;
+    printf("go%d\n",RunTimes);
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
+	//glEnable(GL_DEPTH_TEST);
+	glDepthMask(GL_TRUE);
+    /*
+	glBegin(GL_POLYGON);
+	DrawTool::SetColor(Color(255,255,255));
+	DrawTool::DrawPoint3(50,50,0);
+	DrawTool::DrawPoint3(70,70,0);
+	DrawTool::DrawPoint3(20,70,0);
+	glEnd();
+    */
+
+    box.Refresh();
+    while(box.Run(box.GetNextTime(), SandBox::DefaultDealBW,SandBox::DefaultDealBB ));
+    printf("%f\n",box.balls[1].v.x);
+    Sleep(1000/60);
+    screen.Draw();
+    glutSwapBuffers();
+}
 int main(int argc, char *argv[])
 {
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB|GLUT_DOUBLE|GLUT_DEPTH);
-    glutInitWindowSize(100,100);
-    glutCreateWindow("Jump!");
+    glutInitWindowSize(GAME::SCREEN_WIDTH, GAME::SCREEN_HEIGHT);
+    //glutInitWindowSize(100,100);
+
+    glutCreateWindow("Tank: Plus!");
+    printf("initialize\n");
+    initialize();
 
     /*glutKeyboardFunc(kb);
     glutSpecialFunc(PushKB);

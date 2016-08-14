@@ -31,7 +31,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-std=c++11" />
-			<Add option="-Wno-sign-compare" />
 			<Add directory="include" />
 		</Compiler>
 		<Linker>
@@ -78,8 +77,15 @@
 		<Unit filename="include/Geometry.h">
 			<Option virtualFolder="Geometry/" />
 		</Unit>
-		<Unit filename="include/Hash.h" />
-		<Unit filename="include/IndexManager.h" />
+		<Unit filename="include/Hash.h">
+			<Option virtualFolder="Tools/" />
+		</Unit>
+		<Unit filename="include/IMvector.h">
+			<Option virtualFolder="Tools/" />
+		</Unit>
+		<Unit filename="include/IndexManager.h">
+			<Option virtualFolder="Tools/" />
+		</Unit>
 		<Unit filename="include/Info.h">
 			<Option virtualFolder="Game/" />
 		</Unit>
@@ -92,16 +98,7 @@
 		<Unit filename="include/Module.h">
 			<Option virtualFolder="Game/" />
 		</Unit>
-		<Unit filename="include/Operation.h">
-			<Option virtualFolder="Game/" />
-		</Unit>
 		<Unit filename="include/Player.h">
-			<Option virtualFolder="Game/" />
-		</Unit>
-		<Unit filename="include/Player_ai.h">
-			<Option virtualFolder="Game/" />
-		</Unit>
-		<Unit filename="include/Player_human.h">
 			<Option virtualFolder="Game/" />
 		</Unit>
 		<Unit filename="include/Point.h">
@@ -161,9 +158,6 @@
 		<Unit filename="src/Ball_Polygon.cpp">
 			<Option virtualFolder="SandBox/" />
 		</Unit>
-		<Unit filename="src/Battlefield.cpp">
-			<Option virtualFolder="Game/" />
-		</Unit>
 		<Unit filename="src/Circle.cpp">
 			<Option virtualFolder="Geometry/" />
 		</Unit>
@@ -179,22 +173,14 @@
 		<Unit filename="src/Geo_Calc.cpp">
 			<Option virtualFolder="Geometry/" />
 		</Unit>
-		<Unit filename="src/Hash.cpp" />
-		<Unit filename="src/IndexManager.cpp" />
+		<Unit filename="src/Hash.cpp">
+			<Option virtualFolder="Tools/" />
+		</Unit>
+		<Unit filename="src/IndexManager.cpp">
+			<Option virtualFolder="Tools/" />
+		</Unit>
 		<Unit filename="src/Line.cpp">
 			<Option virtualFolder="Geometry/" />
-		</Unit>
-		<Unit filename="src/Operation.cpp">
-			<Option virtualFolder="Game/" />
-		</Unit>
-		<Unit filename="src/Player.cpp">
-			<Option virtualFolder="Game/" />
-		</Unit>
-		<Unit filename="src/Player_ai.cpp">
-			<Option virtualFolder="Game/" />
-		</Unit>
-		<Unit filename="src/Player_human.cpp">
-			<Option virtualFolder="Game/" />
 		</Unit>
 		<Unit filename="src/Point.cpp">
 			<Option virtualFolder="Geometry/" />

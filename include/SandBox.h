@@ -5,7 +5,7 @@
 #include "Point.h"
 #include "Ball_Polygon.h"
 #include "Wall.h"
-#include "IndexManager.h"
+#include "IMvector.h"
 #include "Hash.h"
 
 namespace GAME
@@ -13,9 +13,9 @@ namespace GAME
 class SandBox: public Ghost
 {
 public:
-	std::vector<Ball_Polygon>balls;
-	std::vector<Wall>walls;
-	std::vector<Point>forces;
+	IMvector<Ball_Polygon>balls;
+	IMvector<Wall>walls;
+	IMvector<Point>forces;
     //std::vector< vector<short> >type_collision_bw;
     //std::vector< vector<short> >type_collision_bb;
     Point Field_Force;
@@ -37,11 +37,11 @@ public:
 private:
 
     double left_time;
-    IndexManager balls_im,walls_im;
+    //IndexManager balls_im,walls_im;
 
-    std::vector<Ball_Polygon> GetNextBalls( double t );
+    IMvector<Ball_Polygon> GetNextBalls( double t );
     bool isCollision( int a, int b, Polygon pa, Polygon pb, void Deal(SandBox *box,int a,int b,Point dir) );
-    HashCode CollisionCheck( std::vector<Ball_Polygon> *b );
+    HashCode CollisionCheck( IMvector<Ball_Polygon> *b );
     void DealWithCollision( void DealBW(SandBox *box,int a,int b,Point dir), void DealBB(SandBox *box,int a,int b,Point dir) );
     std::queue< std::tuple<Point, int, int> > queue_forces;
 
