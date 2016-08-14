@@ -2,7 +2,6 @@
 #define TANK_H
 
 #include <vector>
-#include <string>
 #include "Buff.h"
 #include "Weapon.h"
 #include "Armor.h"
@@ -14,8 +13,7 @@ namespace GAME
 class Tank
 {
 public:
-	std::string name;
-	int target; // target id
+	int target;
 	double view, oldview;
 	std::vector<Buff> buff;
 	std::vector<Weapon> weapon;

@@ -10,8 +10,7 @@ class Operation
 private:
 	Point dir;
 	bool shoot;
-	int item, weapon;
-	    //-1
+	int item, weapon; //-1
 	Point gundir;
 public:
 	Operation();

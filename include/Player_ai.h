@@ -7,7 +7,7 @@ namespace GAME
 class Player_ai: public Player
 {
 public:
-    Player_ai(const Info *info, Operation *operation);
+    Player_ai(const std::string &name, const Info *info, Operation *operation);
     void run();
 };
 }

@@ -10,7 +10,6 @@ struct Tmap
 {
 	std::vector<Polygon> wall, badarea;
 	std::vector<Point> birthplace;
-	double height, width;
 
 	bool save(const char *filename);
 	static void load(const char *filename, Tmap &tmap);

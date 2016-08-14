@@ -1,28 +1,120 @@
 #include "Battlefield.h"
 #include "Player_ai.h"
 #include "Player_human.h"
+#include "DataBase.h"
+#include "Info.h"
 
 namespace GAME
 {
 
 Battlefield::Battlefield(const Tmap &tmap)
+    : started(false)
 {
+    Target tmp;
+    for (auto i : tmap.wall)
+    {
+        tmp.blood = tmp.maxblood = DataBase::DefaultWallBlood;
+        tmp.owner = -1;
+        tmp.shape = sandbox.AddWall(Wall(1, i));
+        tmp.type = 1;
+        barrier.insert(target.insert(tmp));
+    }
+    for (auto i : tmap.badarea)
+    {
+        tmp.blood = tmp.maxblood = DataBase::Infinite;
+        tmp.owner = -1;
+        tmp.shape = sandbox.AddWall(Wall(1, i));
+        tmp.type = 1;
+        barrier.insert(target.insert(tmp));
+    }
 }
 
-void Battlefield::Start()
+bool Battlefield::CanStart()
 {
+    for (auto i : player)
+        if (i->tank.target == -1)
+            return false;
+    return true;
+}
+
+void Battlefield::PlayerInfoInit()
+{
+    for (auto i : info)
+    {
+        i.shell = &shell;
+        i.barrier = &barrier;
+        i.target = &target;
+        i.ball = &sandbox.balls;
+        i.wall = &sandbox.walls;
+    }
     for (int i = 0; i < player.size(); ++i)
-        threads.push_back(std::thread(Battlefield::PlayerStart, this, i));
+    {
+        info[i].playerinfo.resize(player.size());
+        for (int j = 0; j < player.size(); ++j)
+        {
+            PlayerInfo &tmp = info[i].playerinfo[j];
+            tmp.group = player[j]->group;
+            tmp.id = player[j]->id;
+            tmp.name = player[j]->name;
+            tmp.tank = NULL;
+        }
+    }
 }
 
-void Battlefield::PlayerStart(Battlefield *self, int id)
+void Battlefield::PlayerThreadStart(Battlefield *self, int id)
 {
     self->player[id]->run();
 }
 
+void Battlefield::ThreadStart()
+{
+    for (int i = 0; i < player.size(); ++i)
+            threads.push_back(std::thread(Battlefield::PlayerThreadStart, this, i));
+}
+
+void Battlefield::UpdatePlayerInfo()
+{
+    for (int i = 0; i < player.size(); ++i)
+        for (int j = 0; j < player.size(); ++j)
+        {
+            if (PlayerVisible(player[i], player[j]))
+                info[i].playerinfo[j].tank = &player[j]->tank;
+            else
+                info[i].playerinfo[j].tank = NULL;
+        }
+}
+
+bool Battlefield::PlayerVisible(const Player *p1, const Player *p2)
+{
+    Point centerpos = Geo_Calc::GetPolygonCenter(sandbox.balls[target[p1->tank.target].shape].shape);
+    const std::set<int> *index;
+    std::set<int>::const_iterator iter;
+    for (auto i : sandbox.balls[target[p2->tank.target].shape].shape.points)
+    {
+        bool vis = true;
+        index = sandbox.balls.GetIndex();
+        for (iter = index->begin(); vis && iter != index->end(); ++iter)
+            if (*iter != p1->tank.target && *iter != p2->tank.target)
+                if (!Geo_Calc::CheckVisible(centerpos, i, sandbox.balls[*iter].shape))
+                    vis = false;
+        index = sandbox.walls.GetIndex();
+        for (iter = index->begin(); vis && iter != index->end(); ++iter)
+            if (!Geo_Calc::CheckVisible(centerpos, i, sandbox.walls[*iter].shape))
+                vis = false;
+        if (vis)
+            return true;
+    }
+    return false;
+}
+
 int Battlefield::Run()
 {
-    // 在这一帧做一些事情。。。
+    if (!started)
+        PlayerInfoInit();
+    UpdatePlayerInfo();
+    if (!started)
+        ThreadStart(), started = true;
+
     return check_winner();
 }
 
@@ -40,7 +132,7 @@ int Battlefield::check_winner()
     return winner;
 }
 
-int Battlefield::AddPlayer(int type, const std::string &name, int money, double view)
+int Battlefield::AddPlayer(int type, const std::string &name, int money)
 {
     if (player.size() == tmap.birthplace.size())
         return -1;
@@ -50,9 +142,9 @@ int Battlefield::AddPlayer(int type, const std::string &name, int money, double 
     switch (type)
     {
     case 0:
-        a = new Player_human(&info.back(), &op.back());
+        a = new Player_human(name, &info.back(), &op.back());
     case 1:
-        a = new Player_ai(&info.back(), &op.back());
+        a = new Player_ai(name, &info.back(), &op.back());
     default:
         a = NULL;
     }
@@ -65,35 +157,65 @@ int Battlefield::AddPlayer(int type, const std::string &name, int money, double 
     a->id = player.size();
     a->group = a->id;
     a->money = money;
-    a->tank.name = name;
-    a->tank.view = a->tank.oldview = view;
+    a->tank.target = -1;
     player.push_back(a);
     return a->id;
 }
 
+bool Battlefield::check_playerid(int id)
+{
+    return id >= 0 && id < player.size();
+}
+
 void Battlefield::SetArmor(int id, const std::vector<Armor> &armor)
 {
+    if (!check_playerid(id))
+        return;
     player[id]->tank.armor = armor;
 }
 
 void Battlefield::SetItem(int id, const std::vector<Item> &item)
 {
+    if (!check_playerid(id))
+        return;
     player[id]->item = item;
 }
 
 void Battlefield::SetSensor(int id, const std::vector<Sensor_Tank> &sensor)
 {
+    if (!check_playerid(id))
+        return;
     player[id]->tank.sensor = sensor;
 }
 
 void Battlefield::SetWeapon(int id, const std::vector<Weapon> &weapon)
 {
+    if (!check_playerid(id))
+        return;
     player[id]->tank.weapon = weapon;
 }
 
 void Battlefield::SetGroup(int id, int group)
 {
+    if (!check_playerid(id))
+        return;
     player[id]->group = group;
+}
+
+void Battlefield::SetTank(int id, const Polygon &shape, double view, int blood, double mass)
+{
+    if (!check_playerid(id))
+        return;
+    Target tgt;
+    tgt.blood = tgt.maxblood = blood;
+    tgt.owner = id;
+    Polygon newshape(shape);
+    newshape.MoveTo(tmap.birthplace[id]);
+    tgt.shape = sandbox.AddBall(Ball_Polygon(1, mass, Point(), DataBase::Infinite/*MAXV*/, newshape));
+    tgt.type = 0;
+    Tank &tmp = player[id]->tank;
+    tmp.view = tmp.oldview = view;
+    tmp.target = target.insert(tgt);
 }
 
 void Battlefield::Close()

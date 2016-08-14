@@ -3,8 +3,10 @@
 
 #include "Player.h"
 #include "Shell.h"
-#include "Barrier.h"
-#include "Ball_Polygon.h"
+#include "SandBox.h"
+#include "Target.h"
+#include "IMvector.h"
+#include <string>
 
 namespace GAME
 {
@@ -12,20 +14,22 @@ class PlayerInfo
 {
 public:
 	int id, group;
-	bool visible;
-	Tank tank;
+	std::string name;
+	Tank *tank;
 };
 
 class Info
 {
 public:
 	std::vector<PlayerInfo> playerinfo;
-	std::vector<Shell> *shell;
-	std::vector<Target> *target;
-	std::vector<Ball_Polygon> *shape;
-	Barrier *barrier;
+	IMvector<Shell> *shell;
+	IMvector<Target> *target;
+	IMvector<int> *barrier;
+	IMvector<Ball_Polygon> *ball;
+	IMvector<Wall> *wall;
 	int winner;
 	bool quit;
+private:
 };
 }
 

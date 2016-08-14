@@ -6,7 +6,7 @@ namespace GAME
 //Public Functions
 SandBox::SandBox()
 {
-    num_balls = num_walls = 0;
+    //num_balls = num_walls = 0;
     Field_Force = Point();
     left_time = 1;
 }
@@ -19,7 +19,7 @@ void SandBox::Refresh()
     int fn = queue_forces.size();
     std::tuple<Point, int, int> tf;
 
-    for( int i=0; i<num_balls; i++ )
+    for( int i=0; i<balls.size(); i++ )
         forces[i] = Point();
     for( int i=0; i<fn; i++ )
     {
@@ -41,7 +41,7 @@ double SandBox::GetNextTime()
     //
     double l,r;
     HashCode status1,status2;
-    std::vector<Ball_Polygon> tmp_balls;
+    IMvector<Ball_Polygon> tmp_balls;
 
     l = 0;r = left_time;
 
@@ -83,39 +83,20 @@ void SandBox::AddForce( Point f, int id, int life )
 int SandBox::AddBall( Ball_Polygon ball )
 {
     int id;
-    id = balls_im.GetNew();
-    if(id >= balls.size())
-    {
-        balls.push_back(ball);
-    }
-    else
-    {
-        balls[id] = ball;
-    }
-
+    id = balls.insert(ball);
+    forces.insert(Point());
     return id;
 }
 int SandBox::AddWall( Wall wall )
 {
     int id;
-    id = walls_im.GetNew();
-    if(id >= walls.size())
-    {
-        walls.push_back(wall);
-    }
-    else
-        walls[id] = wall;
-
+    id = walls.insert(wall);
+    forces.insert(Point());
     return id;
 }
 bool SandBox::DeleteBall( int id )
 {
-    if (balls_im.isAvailable(id)) return 0;
-    balls_im.erase(id);
-    while( balls.size() && !balls_im.isAvailable(balls.size()-1) )
-    {
-        balls.pop_back();
-    }
+    if(!balls.erase(id))return 0;
     //clear old forces.
     int qn = queue_forces.size();
     for(int i=1;i<=qn;i++)
@@ -129,12 +110,7 @@ bool SandBox::DeleteBall( int id )
 }
 bool SandBox::DeleteWall( int id )
 {
-    if(walls_im.isAvailable(id)) return 0;
-    walls_im.erase(id);
-    while( walls.size() && !walls_im.isAvailable(walls.size()-1) )
-    {
-        walls.pop_back();
-    }
+    if(!walls.erase(id)) return 0;
     return 1;
 }
 void SandBox::DefaultDealBW( SandBox *box, int a, int b, Point dir )
@@ -167,47 +143,48 @@ void SandBox::DefaultDealBB( SandBox *box, int a, int b, Point dir )
     box->balls[b].v = box->balls[b].v + dir * v22 * 0.5;//ratio?
 }
 //Private Functions
-std::vector<Ball_Polygon> SandBox::GetNextBalls( double t )
+IMvector<Ball_Polygon> SandBox::GetNextBalls( double t )
 {
-    std::vector<Ball_Polygon> reballs;
+    IMvector<Ball_Polygon> reballs;
+    const std::set<int> *set_ball=balls.GetIndex();
+    reballs = balls;
     Ball_Polygon tb;
     Point tv;
-    for(int i=0; i < balls.size(); i++)
+
+    for(std::set<int>::iterator ii = set_ball->begin();ii!=set_ball->end();ii++)
     {
+        int i = *ii;
         tb = balls[i];
         tb.AddV( forces[i] / tb.m );
         tb.pos = tb.pos + tb.v * t;
         tb.rotate_rangle += tb.rotate_v * t;
         tb.GetRealShape();
-        reballs.push_back(tb);
+        reballs.insert(tb);
     }
     return reballs;
 }
-HashCode SandBox::CollisionCheck( std::vector<Ball_Polygon> *b )
+HashCode SandBox::CollisionCheck( IMvector<Ball_Polygon> *b )
 {
-    std::vector<int> blist,wlist;
-    balls_im.Get_index();
-    walls_im.Get_index();
-    blist = balls_im.index;
-    wlist = walls_im.index;
+    const std::set<int> *bset=balls.GetIndex();
+    const std::set<int> *wset=walls.GetIndex();
     HashCode hc;
     int i,j;
     //Check Balls and Walls
-    for(int ii=0; ii<blist.size(); ii++)
-    for(int jj=0; jj<wlist.size(); jj++)
+    for(std::set<int>::iterator ii=bset->begin(); ii!=bset->end(); ii++)
+    for(std::set<int>::iterator jj=wset->begin();jj!=wset->end();jj++)
     {
-        i = blist[ii];
-        j = wlist[jj];
+        i = *ii;
+        j = *jj;
         if( Geo_Calc::CheckKick_PolygonToPolygon( (*b)[i].real_shape, walls[j].shape ) )
             hc = hc + ( std::to_string(i) + std::to_string(j) );
     }
     hc = hc + std::string("#");
     //Check Balls and Balls
-    for(int ii=0; ii<blist.size(); ii++)
-    for(int jj=0; jj<blist.size(); jj++)
-    {
-        i = blist[ii];
-        j = wlist[jj];
+    for(std::set<int>::iterator ii=bset->begin(); ii!=bset->end(); ii++)
+    for(std::set<int>::iterator jj=ii; jj!=bset->end(); jj++)
+    if(ii!=jj){
+        i = *ii;
+        j = *jj;
         if( Geo_Calc::CheckKick_PolygonToPolygon( (*b)[i].real_shape, (*b)[j].real_shape, 1 ) )
             hc = hc + ( std::to_string(i) + std::to_string(j) );
     }
@@ -229,34 +206,31 @@ bool SandBox::isCollision( int a, int b, Polygon pa, Polygon pb, void Deal(SandB
 }
 void SandBox::DealWithCollision( void DealBW(SandBox *box, int a,int b, Point dir), void DealBB(SandBox *box, int a,int b, Point dir) )
 {
-    std::vector<int> blist,wlist;
-    balls_im.Get_index();
-    walls_im.Get_index();
-    blist = balls_im.index;
-    wlist = walls_im.index;
+    const std::set<int> *bset=balls.GetIndex();
+    const std::set<int> *wset=walls.GetIndex();
     int i,j;
     //Check Balls and Walls
-    for(int ii=0; ii<balls.size(); ii++)
+    for(std::set<int>::iterator ii=bset->begin(); ii!=bset->end(); ii++)
     {
         //balls[i].real_shape = balls[i].real_shape + balls[i].v*1e-7;
-        for(int jj=0; jj<walls.size(); jj++)
+        for(std::set<int>::iterator jj=wset->begin();jj!=wset->end();jj++)
         {
-            i = blist[ii];
-            j = wlist[jj];
-            isCollision(ii, jj, balls[ii].real_shape, walls[jj].shape, SandBox::DefaultDealBW);
+            i = *ii;
+            j = *jj;
+            isCollision(i, j, balls[i].real_shape, walls[j].shape, SandBox::DefaultDealBW);
         }
         //balls[i].real_shape = balls[i].real_shape - balls[i].v*1e-7;
     }
 
     //Check Balls and Balls
-    for(int ii=0; ii<balls.size(); ii++)
+    for(std::set<int>::iterator ii=bset->begin(); ii!=bset->end(); ii++)
     {
         //balls[i].real_shape = balls[i].real_shape + balls[i].v*1e-7;
-        for(int jj=0; jj<balls.size(); jj++)
-        {
+        for(std::set<int>::iterator jj=ii; jj!=bset->end(); jj++)
+        if(ii!=jj){
             //balls[j].real_shape = balls[j].real_shape + balls[j].v*1e-7;
-            i = blist[ii];
-            j = blist[jj];
+            i = *ii;
+            j = *jj;
             if (! isCollision(i, j, balls[i].real_shape, balls[j].real_shape, SandBox::DefaultDealBB) )
             isCollision(j, i, balls[j].real_shape, balls[i].real_shape, SandBox::DefaultDealBB);
 

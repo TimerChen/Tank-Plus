@@ -25,13 +25,14 @@ public:
     //Circle
     static Point GetPoint_OnCircle( const Circle &a, double rad );
     static Circle Rotate( const Point &o, const Circle &a,double rad );
-	//Polygon
 
+	//Polygon
 	static Polygon RectToPolygon( const Rect &r );
     static Polygon CircleToPolygon( const Circle &o, int EdgeNum, double Start );
     static Polygon Rotate( const Point &o, const Polygon &a, double rad );
     static double GetPolygonArea( const Polygon &a );
     static double GetPolygonArea( const Polygon &a, const Point &b );
+    static Point GetPolygonCenter( const Polygon &a );
 	//Line
 	static Point GetPoint_LineToLine( const Line &a, const Line &b );
 	//
@@ -43,6 +44,8 @@ public:
     //Kick
     static bool CheckKick_LineToLine( const Line &a, const Line &b);
     static bool CheckKick_PolygonToPolygon( const Polygon &a, const Polygon &b,short type = 1 );
+    //Visible
+    static bool CheckVisible(const Point &p1, const Point &p2, const Polygon &poly);
 
 };
 

@@ -10,7 +10,7 @@ namespace GAME
 class Shell
 {
 public:
-	int shape, target;//id
+	int shape, target;
 	int attack;
 	std::vector<Sensor_Shell> sensor;
 };

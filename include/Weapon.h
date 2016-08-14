@@ -8,7 +8,7 @@ namespace GAME
 class Weapon: public Module
 {
 public:
-	int attack;
+    int attack;
 	int id;
 };
 }
