@@ -3,8 +3,9 @@
 namespace GAME
 {
 
-Player::Player(const Info *info, Operation *operation)
+Player::Player(const std::string &name, const Info *info, Operation *operation)
 {
+    this->name = name;
     this->info = info;
     this->op = operation;
 }

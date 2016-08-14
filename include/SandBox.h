@@ -22,7 +22,7 @@ public:
 
 	SandBox();
 
-    int num_balls,num_walls;
+    //int num_balls,num_walls;
     void Refresh();
     double GetNextTime();
     bool Run( double t, void DealBW(SandBox *box,int a,int b,Point dir), void DealBB(SandBox *box,int a,int b,Point dir) );

@@ -73,7 +73,14 @@ double Geo_Calc::GetPolygonArea( const Polygon &a, const Point &b )
     double re = 0;
     for(int i=0; i<a.points.size();i++)
         re += Cross(a.points[i]-b, a.points[(i+1)%a.points.size()]-b);
-    return re;
+    return re/2;
+}
+Point Geo_Calc::GetPolygonCenter( const Polygon &a )
+{
+    Point re;
+    for (auto i : a.points)
+        re = re + i;
+    return re / a.points.size();
 }
 Point Geo_Calc::GetPoint_LineToLine( const Line &a, const Line &b)
 {
@@ -152,6 +159,14 @@ bool Geo_Calc::CheckKick_PolygonToPolygon( const Polygon &a, const Polygon &b,sh
         if(Dis_PointToPolygon(b.points[i], a))
             return 1;
 
-	return 0;
+    return 0;
+}
+bool Geo_Calc::CheckVisible(const Point &p1, const Point &p2, const Polygon &poly)
+{
+    Line l0(p1, p2);
+    for (int i = 0; i < poly.points.size(); ++i)
+        if (Dis_LineToLine(l0, Line(poly.points[i], poly.points[(i+1)%poly.points.size()])) < eps)
+            return false;
+    return true;
 }
 }

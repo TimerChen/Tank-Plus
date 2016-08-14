@@ -1,5 +1,0 @@
-2016-8-10
-原Polygon与opengl名称冲突，因此加入namespace TankPlus，并把GAME融入TankPlus。
-几何部分好冗杂的感觉。。另外“精灵”一词充满神气。。。
-2016-8-11
-写了一堆头文件。。

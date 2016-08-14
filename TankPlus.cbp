@@ -14,7 +14,6 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -24,7 +23,6 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add directory="include" />
 				</Compiler>
 			</Target>
 		</Build>
@@ -47,9 +45,6 @@
 		<Unit filename="include/Ball_Polygon.h">
 			<Option virtualFolder="SandBox/" />
 		</Unit>
-		<Unit filename="include/Barrier.h">
-			<Option virtualFolder="Game/" />
-		</Unit>
 		<Unit filename="include/Battlefield.h">
 			<Option virtualFolder="Game/" />
 		</Unit>
@@ -64,6 +59,9 @@
 		</Unit>
 		<Unit filename="include/Color.h">
 			<Option virtualFolder="Draw/" />
+		</Unit>
+		<Unit filename="include/DataBase.h">
+			<Option virtualFolder="Game/" />
 		</Unit>
 		<Unit filename="include/DrawTool.h">
 			<Option virtualFolder="Draw/" />
@@ -175,6 +173,18 @@
 		</Unit>
 		<Unit filename="src/Hash.cpp">
 			<Option virtualFolder="Tools/" />
+		</Unit>
+		<Unit filename="src/IndexManager.cpp">
+			<Option virtualFolder="Tools/" />
+		</Unit>
+		<Unit filename="src/Line.cpp">
+			<Option virtualFolder="Geometry/" />
+		</Unit>
+		<Unit filename="src/Operation.cpp">
+			<Option virtualFolder="Game/" />
+		</Unit>
+		<Unit filename="src/Player.cpp">
+			<Option virtualFolder="Game/" />
 		</Unit>
 		<Unit filename="src/IndexManager.cpp">
 			<Option virtualFolder="Tools/" />

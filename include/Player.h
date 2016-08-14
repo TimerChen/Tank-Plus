@@ -4,23 +4,24 @@
 #include "Tank.h"
 #include "Operation.h"
 #include "Point.h"
-#include "Info.h"
 #include "Item.h"
 #include <vector>
 
 namespace GAME
 {
-
+class Battlefield;
+class Info;
+class PlayerInfo;
 class Player
 {
 public:
+    std::string name;
 	int id, group, money;
 	Tank tank;
 	std::vector<Item> item;
     Operation *op;
     const Info *info;
-	Player(const Info *info, Operation *operation);
-	PlayerInfo to_info(const Point &pos);
+	Player(const std::string &name, const Info *info, Operation *operation);
 	virtual void run() = 0;
 	virtual ~Player() {}
 };

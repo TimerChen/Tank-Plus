@@ -6,7 +6,7 @@ namespace GAME
 //Public Functions
 SandBox::SandBox()
 {
-    num_balls = num_walls = 0;
+    //num_balls = num_walls = 0;
     Field_Force = Point();
     left_time = 1;
 }
@@ -199,7 +199,6 @@ IMvector<Ball_Polygon> SandBox::GetNextBalls( double t )
         tb.rotate_rangle += tb.rotate_v * t;
         tb.GetRealShape();
         reballs[i] = tb;
-        //reballs.insert(tb);
     }
     return reballs;
 }
@@ -279,7 +278,6 @@ void SandBox::DealWithCollision( void DealBW(SandBox *box, int a,int b, Point di
         for(std::set<int>::iterator jj=ii; jj!=bset->end(); jj++)
         if(ii!=jj){
             //balls[j].real_shape = balls[j].real_shape + balls[j].v*1e-7;
-
             j = *jj;
             if (! isCollision(i, j, balls[i].real_shape, balls[j].real_shape, SandBox::DefaultDealBB) )
             isCollision(j, i, balls[j].real_shape, balls[i].real_shape, SandBox::DefaultDealBB);
