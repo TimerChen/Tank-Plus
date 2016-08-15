@@ -202,7 +202,7 @@ void Battlefield::SetGroup(int id, int group)
     player[id]->group = group;
 }
 
-void Battlefield::SetTank(int id, const Polygon &shape, double view, int blood, double mass)
+void Battlefield::SetTank(int id, const Polygon &shape, double power, double view, int blood, double mass)
 {
     if (!check_playerid(id))
         return;

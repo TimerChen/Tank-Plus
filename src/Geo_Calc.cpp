@@ -174,12 +174,8 @@ bool Geo_Calc::CheckKick_PolygonToPolygon( const Polygon &a, const Polygon &b,sh
 	if(!type) return 0;
 
 	for( i=0; i<a.points.size(); i++)
-    {
-        if (i == 2)
-            i = 2;
         if(Dis_PointToPolygon(a.points[i], b) < eps)
             return 1;
-    }
 
     for( i=0; i<b.points.size(); i++)
         if(Dis_PointToPolygon(b.points[i], a) < eps)

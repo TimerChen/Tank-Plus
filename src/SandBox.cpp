@@ -53,6 +53,11 @@ double SandBox::GetNextTime()
     tmp_balls = GetNextBalls(l);
     status1 = CollisionCheck( &tmp_balls );
 
+    l = 0;r = left_time;
+    //printf("check l\n");
+    tmp_balls = GetNextBalls(l);
+    status1 = CollisionCheck( &tmp_balls );
+
     //想做得更精细可以暴力从中间挑几个时间check一下
     //printf("check r\n");
     double step = 0.1;
@@ -86,11 +91,6 @@ double SandBox::GetNextTime()
             l = mid;
         else
             r = mid;
-    }
-    if( RunTimes == 8 )
-    {
-        tmp_balls = GetNextBalls(r);
-        status2 = CollisionCheck( &tmp_balls );
     }
     if(l == 0)return r;
     return l;
@@ -217,8 +217,6 @@ HashCode SandBox::CollisionCheck( IMvector<Ball_Polygon> *b )
     {
         i = *ii;
         j = *jj;
-        if( i == 1 && j == 0 && RunTimes == 8)
-            RunTimes = 8;
         if( Geo_Calc::CheckKick_PolygonToPolygon( (*b)[i].real_shape, walls[j].shape ) )
         {
             hc = hc + ( std::to_string(i) + std::to_string(j) );
