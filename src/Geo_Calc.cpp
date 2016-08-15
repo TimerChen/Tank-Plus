@@ -37,6 +37,30 @@ Circle Geo_Calc::Rotate( const Point &o, const Circle &a, double Rad )
 }
 
 
+bool Geo_Calc::PointInPolygon( const Point &a, const Polygon &b )
+{
+
+    double rad = rand()%3141/1000.0;
+    Point v(0,1),p;
+    v = Rotate(v,rad);
+    Line line = Line(a, a+v),tl;
+    int pcount = 0,i,ni;
+    for(i=0; i<b.points.size(); i++)
+    {
+        ni = i+1 == b.points.size() ? 0 : i+1 ;
+        tl = Line(b.points[i], b.points[ni]);
+        p = GetPoint_LineToLine(line, tl);
+        if( fabs(p.x-b.points[i].x)<eps && fabs(p.y-b.points[i].y)<eps )
+            return PointInPolygon(a,b);
+
+        if( Dis_PointToLine(p,tl) < eps )
+        if( Dot(p-a,v)>0 )
+            pcount++;
+    }
+
+    return pcount%2;
+}
+
 Polygon Geo_Calc::RectToPolygon( const Rect &r )
 {
 
@@ -110,10 +134,7 @@ double Geo_Calc::Dis_PointToPolygon( const Point &a, const Polygon &b, short typ
     }
     if(!type) return re;
 
-    double area1,area2;
-    area1 = GetPolygonArea( b );
-    area2 = GetPolygonArea( b, a );
-    if( fabs(area1-area2) < eps )re = 0;
+    if( PointInPolygon(a,b) )re = 0;
     return re;
 }
 double Geo_Calc::Dis_LineToLine ( const Line &a, const Line &b )
@@ -153,10 +174,15 @@ bool Geo_Calc::CheckKick_PolygonToPolygon( const Polygon &a, const Polygon &b,sh
 	if(!type) return 0;
 
 	for( i=0; i<a.points.size(); i++)
-        if(Dis_PointToPolygon(a.points[i], b))
+    {
+        if (i == 2)
+            i = 2;
+        if(Dis_PointToPolygon(a.points[i], b) < eps)
             return 1;
+    }
+
     for( i=0; i<b.points.size(); i++)
-        if(Dis_PointToPolygon(b.points[i], a))
+        if(Dis_PointToPolygon(b.points[i], a) < eps)
             return 1;
 
     return 0;

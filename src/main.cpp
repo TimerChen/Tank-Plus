@@ -253,7 +253,9 @@ void initialize()
 
     nb = Ball_Polygon(1,2,0,8, GAME::Polygon(Point(-15,-15), Point(+15,+15)) );
 
-    nb.pos =Point(GAME::SCREEN_WIDTH/2-50,20);
+    nb.shape = GAME::Geo_Calc::CircleToPolygon(Circle(15),7,0);
+
+    nb.pos =Point(GAME::SCREEN_WIDTH/2-50,40);
     int ids_b[10],ids_w[10];
     ids_b[0] = box.AddBall(nb);
 
@@ -264,8 +266,26 @@ void initialize()
     nb.rotate_v = 0.2;
     ids_b[1] = box.AddBall(nb);
 
-    box.AddForce(Point(-1.5,0),ids_b[1],5);
+    nb.pos = nb.pos + Point(30,5);
+    nb.Color_Inside = nb.Color_Inside + Color(2,15,30);
+    box.AddBall(nb);
 
+    nb.pos = nb.pos + Point(30,5);
+    nb.Color_Inside = nb.Color_Inside + Color(2,15,30);
+    box.AddBall(nb);
+
+    nb.pos = nb.pos + Point(30,5);
+    nb.Color_Inside = nb.Color_Inside + Color(2,15,30);
+    box.AddBall(nb);
+
+    box.AddForce(Point(-1.5,0),ids_b[1],5);
+    printf("test:\n");
+    box.balls[0].GetRealShape();
+    box.balls[1].GetRealShape();
+    short bo;
+    bo = Geo_Calc::CheckKick_PolygonToPolygon( box.balls[0].real_shape, box.walls[0].shape, 1 );
+    if(bo)printf("fuck\n");
+    //system("pause");
 }
 void display()
 {
@@ -276,14 +296,17 @@ void display()
     glEnable(GL_BLEND);
 	//glEnable(GL_DEPTH_TEST);
 	glDepthMask(GL_TRUE);
-    /*
-	glBegin(GL_POLYGON);
+
+	box.Field_Force = GAME::Geo_Calc::Rotate(box.Field_Force,0.01);
+
+    Point center = Point(GAME::SCREEN_WIDTH/2,GAME::SCREEN_HEIGHT/2);
+	glBegin(GL_LINES);
 	DrawTool::SetColor(Color(255,255,255));
-	DrawTool::DrawPoint3(50,50,0);
-	DrawTool::DrawPoint3(70,70,0);
-	DrawTool::DrawPoint3(20,70,0);
+	DrawTool::DrawPoint3(center.x,center.y,0);
+	DrawTool::DrawPoint3(center.x+box.Field_Force.x*100,center.y+box.Field_Force.y*100,0);
+	//DrawTool::DrawPoint3(20,70,0);
 	glEnd();
-    */
+
 
     box.Refresh();
     while(box.Run(box.GetNextTime(), SandBox::DefaultDealBW,SandBox::DefaultDealBB ));
@@ -291,6 +314,7 @@ void display()
     Sleep(1000/60);
     screen.Draw();
     glutSwapBuffers();
+    //system("pause");
 }
 int main(int argc, char *argv[])
 {

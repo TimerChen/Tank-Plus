@@ -22,8 +22,6 @@ void SandBox::Refresh()
         int i = *ii;
         forces[i] = Field_Force;
     }
-    if (RunTimes == 26)
-        RunTimes = 26;
     //Add forces
     int fn = queue_forces.size();
     std::tuple<Point, int, int> tf;
@@ -57,7 +55,7 @@ double SandBox::GetNextTime()
 
     //想做得更精细可以暴力从中间挑几个时间check一下
     //printf("check r\n");
-    double step = 0.01;
+    double step = 0.1;
     short check = 0;
     for(double tt = l+step;tt<=r;tt+=step)
     {
@@ -77,7 +75,7 @@ double SandBox::GetNextTime()
 
         if(status1 == status2) return r;
     }
-    //printf("start mid find\n");
+    printf("Collision!\n");
     while( r-l > 1e-10 )
     {
         //printf("%f %f\n",l,r);
@@ -88,6 +86,11 @@ double SandBox::GetNextTime()
             l = mid;
         else
             r = mid;
+    }
+    if( RunTimes == 8 )
+    {
+        tmp_balls = GetNextBalls(r);
+        status2 = CollisionCheck( &tmp_balls );
     }
     if(l == 0)return r;
     return l;
@@ -158,8 +161,8 @@ void SandBox::DefaultDealBB( SandBox *box, int a, int b, Point dir )
     dir = Geo_Calc::Zero(dir);
     dir = Geo_Calc::Normal(dir);
 
-    //box->balls[a].rotate_v = 0;
-    //box->balls[b].rotate_v = 0;
+    box->balls[a].rotate_v *= 0.4;
+    box->balls[b].rotate_v *= 0.4;
     Point tv1, tv2;
     double v1,v2,m1,m2,v11,v22;
     m1 = box->balls[a].m;
@@ -214,8 +217,14 @@ HashCode SandBox::CollisionCheck( IMvector<Ball_Polygon> *b )
     {
         i = *ii;
         j = *jj;
+        if( i == 1 && j == 0 && RunTimes == 8)
+            RunTimes = 8;
         if( Geo_Calc::CheckKick_PolygonToPolygon( (*b)[i].real_shape, walls[j].shape ) )
+        {
             hc = hc + ( std::to_string(i) + std::to_string(j) );
+            printf("Ball%d and Wall%d Collision!\n",i,j);
+        }
+
     }
     hc = hc + std::string("#");
     //Check Balls and Balls
@@ -225,7 +234,11 @@ HashCode SandBox::CollisionCheck( IMvector<Ball_Polygon> *b )
         i = *ii;
         j = *jj;
         if( Geo_Calc::CheckKick_PolygonToPolygon( (*b)[i].real_shape, (*b)[j].real_shape, 1 ) )
+        {
             hc = hc + ( std::to_string(i) + std::to_string(j) );
+            printf("Ball%d and Ball%d Collision!\n",i,j);
+        }
+
     }
 
     return hc;
