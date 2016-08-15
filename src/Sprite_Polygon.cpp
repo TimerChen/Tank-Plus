@@ -19,6 +19,9 @@ void Sprite_Polygon::Draw()
 		for(int i=0; i<poly.points.size(); i++)
 		{
 			DrawTool::DrawPoint3( x + poly.points[i].x +0.5, y + poly.points[i].y +0.5, z );
+			//printf("%d\n",i);
+			//printf("x,y:%d,%d\n",int(x),int(y));
+			//printf("x2,y2:%d,%d\n",int(x + poly.points[i].x +0.5),int(y + poly.points[i].y +0.5));
 		}
 		glEnd();
 

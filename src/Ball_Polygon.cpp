@@ -18,7 +18,7 @@ void Ball_Polygon::AddRotateV( double ROTATE_V )
 void Ball_Polygon::InitCenter( Point shift )
 {
     cent = Point();
-    for(int i=0; i<=shape.points.size(); i++)
+    for(int i=0; i<shape.points.size(); i++)
         cent = cent + shape.points[i];
     cent = cent / shape.points.size();
     cent = cent + shift;
@@ -29,12 +29,8 @@ void Ball_Polygon::GetRealShape()
 
     Point tmpv;
     real_shape = shape;
-    for(int i=0; i<shape.points.size(); i++)
-    {
-        tmpv = shape.points[i] - cent;
-        tmpv = Geo_Calc::Rotate( tmpv, rotate_rangle );
-        real_shape.points[i] = cent + tmpv + pos;
-    }
+    real_shape = Geo_Calc::Rotate(cent,real_shape,rotate_rangle);
+    real_shape.Move(pos);
 
 }
 }

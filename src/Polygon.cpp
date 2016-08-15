@@ -42,14 +42,14 @@ bool Polygon::is_rect() const
 Polygon operator + ( const Polygon &a, const Point &b )
 {
     Polygon re = a;
-    for(int i=0; i<=re.points.size(); i++)
+    for(int i=0; i<re.points.size(); i++)
         re.points[i] = re.points[i] + b;
     return re;
 }
 Polygon operator - ( const Polygon &a, const Point &b )
 {
     Polygon re = a;
-    for(int i=0; i<=re.points.size(); i++)
+    for(int i=0; i<re.points.size(); i++)
         re.points[i] = re.points[i] - b;
     return re;
 }
