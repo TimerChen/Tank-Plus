@@ -23,10 +23,10 @@ public:
     }
     bool erase(int id)
     {
-        if (!im.isAvailable(id))
+        if (im.isAvailable(id))
             return false;
         im.erase(id);
-        while (value.size() && !im.isAvailable(value.size() - 1))
+        while (value.size() && im.isAvailable(value.size() - 1))
         {
             value.pop_back();
             --im.top;
@@ -44,13 +44,13 @@ public:
     }
     T &operator[] (int id)
     {
-        if (!im.isAvailable(id))
+        if (im.isAvailable(id))
             throw std::out_of_range("IMvector index not available");
         return value[id];
     }
     const T &operator[] (int id) const
     {
-        if (!im.isAvailable(id))
+        if (im.isAvailable(id))
             throw std::out_of_range("IMvector index not available");
         return value[id];
     }

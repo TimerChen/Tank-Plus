@@ -14,6 +14,7 @@ class Tank
 {
 public:
 	int target;
+	double power;
 	double view, oldview;
 	std::vector<Buff> buff;
 	std::vector<Weapon> weapon;

@@ -2,6 +2,7 @@
 #当前版本的问题
 * 缺少main函数
 * cannot find -lglut32 (已使用freeglut解决)
+* 缺少Weapon Armor Sensor数据库
 
 #使用帮助手册
 Edited by TimeMachine at 2016-8-10.
