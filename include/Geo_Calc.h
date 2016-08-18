@@ -27,6 +27,7 @@ public:
     static Circle Rotate( const Point &o, const Circle &a,double rad );
 
 	//Polygon
+	static bool PointInPolygon( const Point &a, const Polygon &b );
 	static Polygon RectToPolygon( const Rect &r );
     static Polygon CircleToPolygon( const Circle &o, int EdgeNum, double Start );
     static Polygon Rotate( const Point &o, const Polygon &a, double rad );
