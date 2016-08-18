@@ -6,6 +6,7 @@
 #include "SandBox.h"
 #include "Target.h"
 #include "IMvector.h"
+#include <map>
 #include <string>
 
 namespace GAME
@@ -24,7 +25,7 @@ public:
 	std::vector<PlayerInfo> playerinfo;
 	IMvector<Shell> *shell;
 	IMvector<Target> *target;
-	IMvector<int> *barrier;
+	std::map<int, int> *barrier;
 	IMvector<Ball_Polygon> *ball;
 	IMvector<Wall> *wall;
 	int winner;

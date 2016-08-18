@@ -58,6 +58,10 @@ public:
     {
         return &im.data;
     }
+    bool used(int id) const
+    {
+        return !im.isAvailable(id);
+    }
 };
 
 }

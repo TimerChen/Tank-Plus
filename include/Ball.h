@@ -20,7 +20,7 @@ public:
 
 	//state
 	Point v,cent,pos;
-	double m,MAXv;
+	double m,MAXv,I;
 	//void InitCenter ( Point add=Point() );
 	void AddV( const Point &V );
 };
