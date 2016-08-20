@@ -7,6 +7,7 @@
 #include "Wall.h"
 #include "IMvector.h"
 #include "Hash.h"
+#include "Force.h"
 
 namespace GAME
 {
@@ -23,10 +24,11 @@ public:
 	SandBox();
 
     //int num_balls,num_walls;
-    void Refresh();
+    void Refresh( short first=1 );
     double GetNextTime();
     bool Run( double t, void DealBW(SandBox *box,int a,int b,Point dir), void DealBB(SandBox *box,int a,int b,Point dir) );
-    void AddForce( Point f, int id, int life = 1 );
+    int AddForce( Force f );
+    bool DeleteForces( int id );
     int AddBall( Ball_Polygon ball );
     int AddWall( Wall wall );
     bool DeleteBall( int id );
@@ -43,7 +45,7 @@ private:
     bool isCollision( int a, int b, Polygon pa, Polygon pb, void Deal(SandBox *box,int a,int b,Point dir) );
     HashCode CollisionCheck( IMvector<Ball_Polygon> *b );
     void DealWithCollision( void DealBW(SandBox *box,int a,int b,Point dir), void DealBB(SandBox *box,int a,int b,Point dir) );
-    std::queue< std::tuple<Point, int, int> > queue_forces;
+    IMvector<Force>raw_forces;
 
 };
 }

@@ -251,19 +251,24 @@ void initialize()
     nw = Wall(1,GAME::Polygon(Point(GAME::SCREEN_WIDTH-7,1), Point(GAME::SCREEN_WIDTH,GAME::SCREEN_HEIGHT) ) );
     box.AddWall(nw);
 
+    nw = Wall(1,GAME::Geo_Calc::CircleToPolygon(GAME::Circle(40,Point(GAME::SCREEN_WIDTH/2,GAME::SCREEN_HEIGHT-80-50)),3,M_PI/3) ) ;
+    box.AddWall(nw);
+
     nb = Ball_Polygon(1,2,0,8, GAME::Polygon(Point(-15,-15), Point(+15,+15)) );
 
-    nb.shape = GAME::Geo_Calc::CircleToPolygon(Circle(15),7,0);
+    //nb.shape = GAME::Geo_Calc::CircleToPolygon(Circle(15),7,0);
 
     nb.pos =Point(GAME::SCREEN_WIDTH/2-50,40);
     int ids_b[10],ids_w[10];
     ids_b[0] = box.AddBall(nb);
 
-    nb.pos = nb.pos + Point(100,5);
+    nb.pos = nb.pos + Point(0,40);
 
 	nb.Default_InsideColor = 0;
 	nb.Color_Inside = Color(250,150,70);
     nb.rotate_v = 0.2;
+    ids_b[1] = box.AddBall(nb);
+    /*
     ids_b[1] = box.AddBall(nb);
 
     nb.pos = nb.pos + Point(30,5);
@@ -278,14 +283,15 @@ void initialize()
     nb.Color_Inside = nb.Color_Inside + Color(2,15,30);
     box.AddBall(nb);
 
-    box.AddForce(Point(-1.5,0),ids_b[1],5);
+    box.AddForce(Point(-1.5,-0.7),ids_b[1],5);
+    */
     printf("test:\n");
-    box.balls[0].GetRealShape();
-    box.balls[1].GetRealShape();
+    //box.balls[0].GetRealShape();
+    //box.balls[1].GetRealShape();
     short bo;
-    bo = Geo_Calc::CheckKick_PolygonToPolygon( box.balls[0].real_shape, box.walls[0].shape, 1 );
+    //bo = Geo_Calc::CheckKick_PolygonToPolygon( box.balls[0].real_shape, box.walls[0].shape, 1 );
     if(bo)printf("fuck\n");
-    //system("pause");
+    system("pause");
 }
 void display()
 {
@@ -296,7 +302,7 @@ void display()
     glEnable(GL_BLEND);
 	//glEnable(GL_DEPTH_TEST);
 	glDepthMask(GL_TRUE);
-
+    /*
 	box.Field_Force = GAME::Geo_Calc::Rotate(box.Field_Force,0.01);
 
     Point center = Point(GAME::SCREEN_WIDTH/2,GAME::SCREEN_HEIGHT/2);
@@ -306,11 +312,11 @@ void display()
 	DrawTool::DrawPoint3(center.x+box.Field_Force.x*100,center.y+box.Field_Force.y*100,0);
 	//DrawTool::DrawPoint3(20,70,0);
 	glEnd();
-
+    */
 
     box.Refresh();
     while(box.Run(box.GetNextTime(), SandBox::DefaultDealBW,SandBox::DefaultDealBB ));
-    printf("%f\n",box.balls[1].v.x);
+    printf(">>>>>%f & %f\n",box.balls[0].v.y,box.balls[1].v.y);
     Sleep(1000/60);
     screen.Draw();
     glutSwapBuffers();

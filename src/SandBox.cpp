@@ -10,10 +10,11 @@ SandBox::SandBox()
     Field_Force = Point();
     left_time = 1;
 }
-void SandBox::Refresh()
+void SandBox::Refresh(short first)
 {
     //Reset left time
-    left_time = 1;
+    if(first)
+        left_time = 1;
 
     //Add Field_Force
     const std::set<int> *fset = forces.GetIndex();
@@ -23,20 +24,21 @@ void SandBox::Refresh()
         forces[i] = Field_Force;
     }
     //Add forces
-    int fn = queue_forces.size();
-    std::tuple<Point, int, int> tf;
+    const std::set<int> *rfset=raw_forces.GetIndex();
 
-    for( int i=0; i<fn; i++ )
+    for( std::set<int>::iterator ii=rfset->begin();ii!=rfset->end();ii++ )
     {
-        int id;
-        tf = queue_forces.front();
-        queue_forces.pop();
-        id = std::get<1>(tf);
-        std::get<2>(tf) = std::get<2>(tf) - 1;
-        forces[id] = forces[id] + std::get<0>(tf);
-        if( std::get<2>(tf)>0 ) queue_forces.push(tf);
+        if(first && raw_forces[*ii].life == 0)
+        {
+            DeleteForces(*ii);
+            continue;
+        }
+
+        int id = raw_forces[*ii].aim;
+        forces[id] = forces[id] + raw_forces[*ii].v;
+        if(first)
+            raw_forces[*ii].life-=1;
     }
-    printf("fn:%d\n",fn);
 
 }
 double SandBox::GetNextTime()
@@ -44,6 +46,8 @@ double SandBox::GetNextTime()
     //if at time l there is some collision
 
     //
+    if (RunTimes == 59)
+        RunTimes = 59;
     double l,r;
     HashCode status1,status2;
     IMvector<Ball_Polygon> tmp_balls;
@@ -104,10 +108,11 @@ bool SandBox::Run(double t, void DealBW(SandBox *box,int a,int b,Point dir), voi
     left_time -= t;
     return 1;
 }
-void SandBox::AddForce( Point f, int id, int life )
+int SandBox::AddForce( Force f )
 {
-    if(id >= balls.size())return; //Error occurred.
-    queue_forces.push(std::tuple<Point, int, int>(f,id,life));
+    int id;
+    id = raw_forces.insert(f);
+    return id;
 }
 int SandBox::AddBall( Ball_Polygon ball )
 {
@@ -123,18 +128,19 @@ int SandBox::AddWall( Wall wall )
     forces.insert(Point());
     return id;
 }
+bool SandBox::DeleteForces( int id )
+{
+    if(!raw_forces.erase(id)) return 0;
+    return 1;
+}
 bool SandBox::DeleteBall( int id )
 {
     if(!balls.erase(id))return 0;
     //clear old forces.
-    int qn = queue_forces.size();
-    for(int i=1;i<=qn;i++)
-    {
-        std::tuple<Point, int, int> tmpf;
-        tmpf = queue_forces.front();
-        queue_forces.pop();
-        if(std::get<1>(tmpf) != id)queue_forces.push(tmpf);
-    }
+    const std::set<int> *rfset=raw_forces.GetIndex();
+    for(std::set<int>::iterator i=rfset->begin();i!=rfset->end();i++)
+    if(raw_forces[*i].aim == id)
+        raw_forces.erase(*i);
     return 1;
 }
 bool SandBox::DeleteWall( int id )
@@ -150,11 +156,29 @@ void SandBox::DefaultDealBW( SandBox *box, int a, int b, Point dir )
 
     //box->balls[a].rotate_v = 0;
     Point tv;
+    double len1;
     //printf("(%f, %f)",dir.x,dir.y);
     printf("(%f, %f)\n",box->balls[a].v.x,box->balls[a].v.y);
-    tv = dir * Geo_Calc::Dot( box->balls[a].v, dir );
+    len1 = Geo_Calc::Dot( box->balls[a].v, dir );
+    tv = dir * len1;
     //printf("(%f, %f)",dir.x,dir.y);
-    box->balls[a].v = box->balls[a].v - tv * (1 + 1);//ratio?
+    box->balls[a].v = box->balls[a].v - tv;
+
+
+    len1*=1;
+    tv = dir * len1;//ratio?
+
+    const double MLEN = 1.5;
+
+    if(fabs(len1) <= MLEN && len1!=0)
+    {
+        printf("fuckyou!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+        tv = tv *(MLEN/fabs(len1));
+
+
+    }
+
+    box->balls[a].v = box->balls[a].v - tv;
 }
 void SandBox::DefaultDealBB( SandBox *box, int a, int b, Point dir )
 {
@@ -168,7 +192,6 @@ void SandBox::DefaultDealBB( SandBox *box, int a, int b, Point dir )
     m1 = box->balls[a].m;
     m2 = box->balls[b].m;
     v1 = Geo_Calc::Dot( box->balls[a].v, dir );
-
     v2 = Geo_Calc::Dot( box->balls[b].v, dir );
 
     printf("%f %f\n",v1,v2);
@@ -179,9 +202,17 @@ void SandBox::DefaultDealBB( SandBox *box, int a, int b, Point dir )
     printf("%f %f\n",box->balls[b].v.x,box->balls[b].v.y);
     v11 = (v1*(m1 - m2) + 2*m2*v2)/(m1 + m2);
     v22 = (v2*(m2 - m1) + 2*m1*v1)/(m1 + m2);
-    box->balls[a].v = box->balls[a].v + dir * v11 * 1;//ratio?
+
+    v11 *= 1;//ratio?
+    v22 *= 1;//ratio?
+
+    const double MLEN = 1.5;
+    if(fabs(v11) <= MLEN && v11!=0) v11 = v11 *(MLEN/fabs(v11));
+    if(fabs(v22) <= MLEN && v22!=0) v22 = v22 *(MLEN/fabs(v22));
+
+    box->balls[a].v = box->balls[a].v + dir * v11;
     printf("%f %f\n",box->balls[a].v.x,box->balls[a].v.y);
-    box->balls[b].v = box->balls[b].v + dir * v22 * 1;//ratio?
+    box->balls[b].v = box->balls[b].v + dir * v22;
     printf("%f %f\n",box->balls[b].v.x,box->balls[b].v.y);
 }
 //Private Functions
@@ -249,7 +280,7 @@ bool SandBox::isCollision( int a, int b, Polygon pa, Polygon pb, void Deal(SandB
     {
         double dis = Geo_Calc::Dis_PointToLine(pa.points[i],Line(pb.points[j],pb.points[(j+1)%pb.points.size()]));
         //printf("%d %d %f\n",i,j,dis);
-        if(dis < 0.1)
+        if(dis < eps*100)
         {
             Deal(this, a,b, pb.points[j] - pb.points[(j+1)%pb.points.size()] );
             return 1;
@@ -276,7 +307,8 @@ void SandBox::DealWithCollision( void DealBW(SandBox *box, int a,int b, Point di
         {
 
             j = *jj;
-            isCollision(i, j, balls[i].real_shape, walls[j].shape, SandBox::DefaultDealBW);
+            if(! isCollision(i, j, balls[i].real_shape, walls[j].shape, SandBox::DefaultDealBW) )
+                isCollision(i, j, walls[j].shape, balls[i].real_shape, SandBox::DefaultDealBW);
         }
         //balls[i].real_shape = balls[i].real_shape - tv1;
     }
