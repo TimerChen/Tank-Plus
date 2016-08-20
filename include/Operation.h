@@ -7,12 +7,12 @@ namespace GAME
 {
 class Operation
 {
-private:
-	Point dir;
+public:
+	Point dir; //0<=len(dir)<=1
 	bool shoot;
 	int item, weapon; //-1
 	Point gundir;
-public:
+
 	Operation();
 };
 }

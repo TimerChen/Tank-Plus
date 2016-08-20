@@ -6,6 +6,7 @@ Ball_Polygon::Ball_Polygon( short TYPE_SHAPE, double M, Point V, double MAXV, Po
 Ball( TYPE_SHAPE, M, V, MAXV ), shape(SHAPE), rotate_v( ROTATE_V ), rotate_rangle( ROTATE_RANGLE )
 {
     InitCenter( CENTER_SHIFT );
+    I = m * Geo_Calc::CalcInertia(shape);
 }
 
 void Ball_Polygon::AddRotateV( double ROTATE_V )
@@ -17,10 +18,11 @@ void Ball_Polygon::AddRotateV( double ROTATE_V )
 
 void Ball_Polygon::InitCenter( Point shift )
 {
-    cent = Point();
+    /*cent = Point();
     for(int i=0; i<shape.points.size(); i++)
         cent = cent + shape.points[i];
-    cent = cent / shape.points.size();
+    cent = cent / shape.points.size();*/
+    cent = Geo_Calc::GetPolygonCenter(shape);
     cent = cent + shift;
 }
 

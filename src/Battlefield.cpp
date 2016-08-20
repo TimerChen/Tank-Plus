@@ -17,7 +17,7 @@ Battlefield::Battlefield(const Tmap &tmap)
         tmp.owner = -1;
         tmp.shape = sandbox.AddWall(Wall(1, i));
         tmp.type = 1;
-        barrier.insert(target.insert(tmp));
+        barrier[tmp.shape] = target.insert(tmp);
     }
     for (auto i : tmap.badarea)
     {
@@ -25,7 +25,7 @@ Battlefield::Battlefield(const Tmap &tmap)
         tmp.owner = -1;
         tmp.shape = sandbox.AddWall(Wall(1, i));
         tmp.type = 1;
-        barrier.insert(target.insert(tmp));
+        barrier[tmp.shape] = target.insert(tmp);
     }
 }
 
@@ -69,7 +69,7 @@ void Battlefield::PlayerThreadStart(Battlefield *self, int id)
 void Battlefield::ThreadStart()
 {
     for (int i = 0; i < player.size(); ++i)
-            threads.push_back(std::thread(Battlefield::PlayerThreadStart, this, i));
+        threads.push_back(std::thread(Battlefield::PlayerThreadStart, this, i));
 }
 
 void Battlefield::UpdatePlayerInfo()
@@ -86,7 +86,8 @@ void Battlefield::UpdatePlayerInfo()
 
 bool Battlefield::PlayerVisible(const Player *p1, const Player *p2)
 {
-    Point centerpos = Geo_Calc::GetPolygonCenter(sandbox.balls[target[p1->tank.target].shape].shape);
+    //Point centerpos = Geo_Calc::GetPolygonCenter(sandbox.balls[target[p1->tank.target].shape].shape);
+    Point centerpos = sandbox.balls[target[p1->tank.target].shape].cent;
     const std::set<int> *index;
     std::set<int>::const_iterator iter;
     for (auto i : sandbox.balls[target[p2->tank.target].shape].shape.points)
@@ -114,7 +115,10 @@ int Battlefield::Run()
     UpdatePlayerInfo();
     if (!started)
         ThreadStart(), started = true;
-
+    DealOperation();
+    sandbox.Refresh();
+    self = this;
+    while (sandbox.Run(sandbox.GetNextTime(), DealBW, DealBB));
     return check_winner();
 }
 
@@ -226,6 +230,65 @@ void Battlefield::Close()
         threads[i].join();
     for (auto i : player)
         delete i;
+}
+
+void Battlefield::DealOperation()
+{
+    for (int i = 0; i < op.size(); ++i)
+    {
+        DealOperation_Move(i, op[i].dir);
+        if (op[i].shoot)
+            DealOperation_Shoot(i, op[i].gundir, op[i].weapon);
+        if (op[i].item != -1)
+            DealOperation_Item(i, op[i].item);
+    }
+}
+
+void Battlefield::DealOperation_Move(int id, const Point &dir)
+{
+    Point dir2;
+    double len = Geo_Calc::Length(dir);
+    if (len > 1)
+        dir2 = dir / len;
+    else
+        dir2 = dir;
+    Tank &tnk = player[id]->tank;
+    sandbox.AddForce(dir2 * tnk.power, target[tnk.target].shape, 1);
+}
+
+void Battlefield::DealOperation_Shoot(int id, const Point &gundir, int wpn)
+{
+    try
+    {
+        Tank &tnk = player[id]->tank;
+        DataBase::WeaponShoot(this, sandbox.balls[target[tnk.target].shape], tnk.weapon[wpn], gundir);
+    }
+    catch (...) {}
+}
+
+void Battlefield::DealOperation_Item(int id, int item)
+{
+
+}
+
+Battlefield *Battlefield::self;
+
+void Battlefield::DealBW(SandBox *box, int a, int b, Point dir)
+{
+    int typea = GetBallType(a);
+    Hit(a, typea, target[barrier[b]);
+    SandBox::DefaultDealBW(box, a, b, dir);
+}
+
+void Battlefield::DealBB(SandBox *box, int a, int b, Point dir)
+{
+    int typea = GetBallType(a);
+    int typeb = GetBallType(b);
+    SandBox::DefaultDealBB(box, a, b, dir);
+}
+
+int Battlefield::GetBallType(int id)
+{
 }
 
 }

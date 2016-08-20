@@ -34,6 +34,7 @@ public:
     static double GetPolygonArea( const Polygon &a );
     static double GetPolygonArea( const Polygon &a, const Point &b );
     static Point GetPolygonCenter( const Polygon &a );
+    static double CalcInertia( const Polygon &a );
 	//Line
 	static Point GetPoint_LineToLine( const Line &a, const Line &b );
 	//

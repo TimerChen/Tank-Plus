@@ -184,6 +184,9 @@
 		<Unit filename="src/Color.cpp">
 			<Option virtualFolder="Draw/" />
 		</Unit>
+		<Unit filename="src/DataBase.cpp">
+			<Option virtualFolder="Game/" />
+		</Unit>
 		<Unit filename="src/DrawTool.cpp">
 			<Option virtualFolder="Draw/" />
 		</Unit>
@@ -237,6 +240,9 @@
 		</Unit>
 		<Unit filename="src/Sprite_SandBox.cpp">
 			<Option virtualFolder="Sprite/" />
+		</Unit>
+		<Unit filename="src/Target.cpp">
+			<Option virtualFolder="Game/" />
 		</Unit>
 		<Unit filename="src/Wall.cpp">
 			<Option virtualFolder="SandBox/" />

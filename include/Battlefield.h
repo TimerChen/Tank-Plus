@@ -10,6 +10,7 @@
 #include "IMvector.h"
 #include <string>
 #include <thread>
+#include <map>
 
 namespace GAME
 {
@@ -20,7 +21,7 @@ public:
 	SandBox sandbox;
     IMvector<Target> target;
     Tmap tmap;
-    IMvector<int> barrier;
+    std::map<int, int> barrier; // wall -> target
     IMvector<Shell> shell;
 
 	Battlefield(const Tmap &tmap);
@@ -50,6 +51,16 @@ private:
     void UpdatePlayerInfo();
     bool PlayerVisible(const Player *p1, const Player *p2);
     bool started;
+
+    static Battlefield *self;
+    int GetBallType(int id);
+    static void DealBW(SandBox *box, int a, int b, Point dir);
+    static void DealBB(SandBox *box, int a, int b, Point dir);
+
+    void DealOperation();
+    void DealOperation_Move(int id, const Point &dir);
+    void DealOperation_Shoot(int id, const Point &gundir, int wpn);
+    void DealOperation_Item(int id, int item);
 };
 }
 

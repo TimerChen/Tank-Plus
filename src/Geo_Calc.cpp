@@ -106,6 +106,21 @@ Point Geo_Calc::GetPolygonCenter( const Polygon &a )
         re = re + i;
     return re / a.points.size();
 }
+double Geo_Calc::CalcInertia( const Polygon &a )
+{
+    double ans = 0;
+    double ans2 = 0;
+    for (int i = 0; i < a.points.size(); ++i)
+    {
+        const Point &p1 = a.points[i];
+        const Point &p2 = a.points[(i + 1) % a.points.size()];
+        double tmp = Cross(p2, p1);
+        ans += tmp * (Dot(p1, p1) + Dot(p1, p2) + Dot(p2, p2));
+        ans2 += tmp;
+    }
+    ans2 *= 6;
+    return ans / ans2;
+}
 Point Geo_Calc::GetPoint_LineToLine( const Line &a, const Line &b)
 {
 
