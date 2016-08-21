@@ -253,7 +253,7 @@ void Battlefield::DealOperation_Move(int id, const Point &dir)
     else
         dir2 = dir;
     Tank &tnk = player[id]->tank;
-    sandbox.AddForce(dir2 * tnk.power, target[tnk.target].shape, 1);
+    sandbox.AddForce(Force(dir2 * tnk.power, target[tnk.target].shape, 1));
 }
 
 void Battlefield::DealOperation_Shoot(int id, const Point &gundir, int wpn)

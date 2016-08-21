@@ -28,17 +28,21 @@ public:
     double GetNextTime();
     bool Run( double t, void DealBW(SandBox *box,int a,int b,Point dir), void DealBB(SandBox *box,int a,int b,Point dir) );
     int AddForce( Force f );
-    bool DeleteForces( int id );
     int AddBall( Ball_Polygon ball );
     int AddWall( Wall wall );
+    bool DeleteForces( int id );
     bool DeleteBall( int id );
     bool DeleteWall( int id );
+    void AddTracing( int id, int aim, short type=1 );
+    void ClearTracing( int id );
     static void DefaultDealBW(SandBox *box, int a, int b, Point dir);
     static void DefaultDealBB(SandBox *box, int a, int b, Point dir);
 
+    IMvector<int>tracing;
 private:
 
     double left_time;
+
     //IndexManager balls_im,walls_im;
 
     IMvector<Ball_Polygon> GetNextBalls( double t );

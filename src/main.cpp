@@ -268,6 +268,7 @@ void initialize()
 	nb.Color_Inside = Color(250,150,70);
     nb.rotate_v = 0.2;
     ids_b[1] = box.AddBall(nb);
+    box.AddTracing(1,0);
     /*
     ids_b[1] = box.AddBall(nb);
 
@@ -297,6 +298,8 @@ void display()
 {
     RunTimes++;
     printf("go%d\n",RunTimes);
+    if(box.tracing[1] == -1)
+        printf("aaaaaaaaaaaaaaaaaaaaaaaaa%d\n",RunTimes);
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
@@ -317,6 +320,8 @@ void display()
     box.Refresh();
     while(box.Run(box.GetNextTime(), SandBox::DefaultDealBW,SandBox::DefaultDealBB ));
     printf(">>>>>%f & %f\n",box.balls[0].v.y,box.balls[1].v.y);
+    printf("[[[[[[[[%f]]]]]]]]",box.balls[0].pos.y - box.balls[1].pos.y);
+    printf("[[[[[[[[%f]]]]]]]]",box.balls[0].real_shape.points[0].y - box.balls[1].real_shape.points[0].y);
     Sleep(1000/60);
     screen.Draw();
     glutSwapBuffers();

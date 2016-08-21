@@ -175,9 +175,6 @@
 		<Unit filename="src/Ball_Polygon.cpp">
 			<Option virtualFolder="SandBox/" />
 		</Unit>
-		<Unit filename="src/Battlefield.cpp">
-			<Option virtualFolder="Game/" />
-		</Unit>
 		<Unit filename="src/Circle.cpp">
 			<Option virtualFolder="Geometry/" />
 		</Unit>

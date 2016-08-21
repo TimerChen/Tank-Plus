@@ -31,7 +31,6 @@ void Sprite_SandBox::Draw()
         s_tmp.Draw();
     }
 
-
     for( std::set<int>::iterator ii=bset->begin(); ii!=bset->end(); ii++)
     {
         //printf("%d\n",*ii);

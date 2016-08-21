@@ -103,6 +103,8 @@ bool SandBox::Run(double t, void DealBW(SandBox *box,int a,int b,Point dir), voi
 {
     if(left_time <= 0)return 0;
     balls = GetNextBalls(t);
+    if(balls[0].pos.y!=balls[1].pos.y)
+        balls[0].pos.y = balls[1].pos.y;
     //...
     DealWithCollision( DealBW, DealBB );
     left_time -= t;
@@ -119,6 +121,7 @@ int SandBox::AddBall( Ball_Polygon ball )
     int id;
     id = balls.insert(ball);
     forces.insert(Point());
+    tracing.insert(-1);
     return id;
 }
 int SandBox::AddWall( Wall wall )
@@ -136,6 +139,7 @@ bool SandBox::DeleteForces( int id )
 bool SandBox::DeleteBall( int id )
 {
     if(!balls.erase(id))return 0;
+    tracing.erase(id);
     //clear old forces.
     const std::set<int> *rfset=raw_forces.GetIndex();
     for(std::set<int>::iterator i=rfset->begin();i!=rfset->end();i++)
@@ -147,6 +151,22 @@ bool SandBox::DeleteWall( int id )
 {
     if(!walls.erase(id)) return 0;
     return 1;
+}
+void SandBox::AddTracing( int id, int aim, short type )
+{
+    tracing[id]=aim;
+    if(type)
+    {
+        balls[aim].pos = balls[aim].pos-balls[id].pos;
+        balls[aim].GetRealShape();
+        balls[aim].shape = balls[aim].real_shape;
+        balls[aim].rotate_rangle = 0;
+        balls[aim].pos = balls[id].pos;
+    }
+}
+void SandBox::ClearTracing( int id )
+{
+    tracing[id]=-1;
 }
 void SandBox::DefaultDealBW( SandBox *box, int a, int b, Point dir )
 {
@@ -231,6 +251,20 @@ IMvector<Ball_Polygon> SandBox::GetNextBalls( double t )
         tb.AddV( forces[i] / tb.m );
         tb.pos = tb.pos + tb.v * t;
         tb.rotate_rangle += tb.rotate_v * t;
+        tb.GetRealShape();
+        reballs[i] = tb;
+    }
+    //trace on!
+    for(std::set<int>::iterator ii = set_ball->begin();ii!=set_ball->end();ii++)
+    if(tracing[*ii]!=-1)
+    {
+        int i = *ii,j = tracing[*ii];
+        tb = reballs[i];
+        tb.cent = reballs[j].cent;
+        //tb.v = balls[j].v;
+        //tb.rotate_v = balls[j].rotate_v;
+        tb.pos = reballs[j].pos;
+        tb.rotate_rangle = reballs[j].rotate_rangle;
         tb.GetRealShape();
         reballs[i] = tb;
     }
