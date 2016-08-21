@@ -286,20 +286,12 @@ void initialize()
 
     box.AddForce(Point(-1.5,-0.7),ids_b[1],5);
     */
-    printf("test:\n");
-    //box.balls[0].GetRealShape();
-    //box.balls[1].GetRealShape();
-    short bo;
-    //bo = Geo_Calc::CheckKick_PolygonToPolygon( box.balls[0].real_shape, box.walls[0].shape, 1 );
-    if(bo)printf("fuck\n");
     system("pause");
 }
 void display()
 {
     RunTimes++;
     printf("go%d\n",RunTimes);
-    if(box.tracing[1] == -1)
-        printf("aaaaaaaaaaaaaaaaaaaaaaaaa%d\n",RunTimes);
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
@@ -319,9 +311,6 @@ void display()
 
     box.Refresh();
     while(box.Run(box.GetNextTime(), SandBox::DefaultDealBW,SandBox::DefaultDealBB ));
-    printf(">>>>>%f & %f\n",box.balls[0].v.y,box.balls[1].v.y);
-    printf("[[[[[[[[%f]]]]]]]]",box.balls[0].pos.y - box.balls[1].pos.y);
-    printf("[[[[[[[[%f]]]]]]]]",box.balls[0].real_shape.points[0].y - box.balls[1].real_shape.points[0].y);
     Sleep(1000/60);
     screen.Draw();
     glutSwapBuffers();

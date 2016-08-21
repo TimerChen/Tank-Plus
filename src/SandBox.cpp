@@ -214,12 +214,8 @@ void SandBox::DefaultDealBB( SandBox *box, int a, int b, Point dir )
     v1 = Geo_Calc::Dot( box->balls[a].v, dir );
     v2 = Geo_Calc::Dot( box->balls[b].v, dir );
 
-    printf("%f %f\n",v1,v2);
-    printf("kira");
     box->balls[a].v = box->balls[a].v - dir * v1;
-    printf("%f %f\n",box->balls[a].v.x,box->balls[a].v.y);
     box->balls[b].v = box->balls[b].v - dir * v2;
-    printf("%f %f\n",box->balls[b].v.x,box->balls[b].v.y);
     v11 = (v1*(m1 - m2) + 2*m2*v2)/(m1 + m2);
     v22 = (v2*(m2 - m1) + 2*m1*v1)/(m1 + m2);
 
@@ -231,9 +227,7 @@ void SandBox::DefaultDealBB( SandBox *box, int a, int b, Point dir )
     if(fabs(v22) <= MLEN && v22!=0) v22 = v22 *(MLEN/fabs(v22));
 
     box->balls[a].v = box->balls[a].v + dir * v11;
-    printf("%f %f\n",box->balls[a].v.x,box->balls[a].v.y);
     box->balls[b].v = box->balls[b].v + dir * v22;
-    printf("%f %f\n",box->balls[b].v.x,box->balls[b].v.y);
 }
 //Private Functions
 IMvector<Ball_Polygon> SandBox::GetNextBalls( double t )
